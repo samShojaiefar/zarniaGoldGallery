@@ -1,0 +1,23 @@
+.faqContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #E9CDB833;
+  gap: 20px;
+
+  .ant-collapse {
+    display: flex;
+    justify-content: space-between;
+    border: none; 
+    background-color: transparent;
+  }
+
+  .ant-collapse-header {
+    font-weight: bold;
+  }
+
+  .ant-collapse-content {
+    padding: 16px; 
+    background-color: hsla(26, 53%, 82%, 0.2); 
+  }
+}

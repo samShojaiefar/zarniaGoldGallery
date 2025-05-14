@@ -1,0 +1,39 @@
+.priceRangeContainer{
+    padding: 16px;
+    gap: 16px;
+    overflow-x: auto;
+    margin: auto;
+    @media screen and (min-width:1266px){
+        justify-content: center;
+        align-items: center;
+    }
+
+    .range{
+        padding: 16px;
+        border-radius: 12px;
+        height: 48px;
+        margin-left: 8px;
+        background-color: #C7A78233;
+        border: none;
+        color: #715A41  !important;
+        font-size: 1.2rem;
+    }
+    .range:hover{
+        padding: 16px;
+        border-radius: 12px;
+        height: 48px;
+        margin-left: 8px;
+        background-color: #C7A78233 !important;
+        border: none !important;
+        border-bottom: 1px solid #0000001A !important;
+        color: #715A41  !important;
+    }
+}
+.titleContainer{
+    padding-right: 16px;
+    @media screen and (min-width:1266px){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
