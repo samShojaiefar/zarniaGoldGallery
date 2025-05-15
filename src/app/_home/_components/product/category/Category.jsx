@@ -29,6 +29,16 @@ function Category() {
             <Flex vertical className={style.categoryContainer}>
                 <Title className={style.title} level={4}>دسته بندی محصولات</Title>
                 <div className={style.categoryGrid}>
+                    {isMobile &&(
+                        categories.map((category, index) => (
+                                    <CategoryItem key={index} {...category} />
+                                ))
+                    )}
+                    {isTablet &&(
+                        categories.map((category, index) => (
+                                    <CategoryItem key={index} {...category} />
+                                ))
+                    )}
                     {isDesktop && (
                         <>
                             <div className={style.categoryCulomn}>
