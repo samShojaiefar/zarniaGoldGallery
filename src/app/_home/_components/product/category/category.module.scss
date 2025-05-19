@@ -12,40 +12,26 @@
     padding-top: 50px;
     @media screen and (min-width: 1266px) {
       text-align: center;
-    }
-    @media screen and (min-width: 1266px) {
-      text-align: center;
       width: 1064px;
     }
   }
-  .categoryGrid {
+  .itemContainer {
     margin: auto;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
     @media screen and (min-width: 768px) {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      margin: auto;
+      width: 800px;
     }
-    @media screen and (min-width: 1267px) {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-    }
-    .categoryCulomn {
-      display: flex;
-      gap: 8px;
+    @media screen and (min-width: 1266px) {
+      width: 1000px;
     }
     .categoryItem {
       width: 160px;
-      height: 130px;
       border: 1px solid #0000001a;
       border-radius: 12px;
       cursor: pointer;
+      .categoryImage {
+        max-width: 100px;
+        max-height: 90px;
+      }
       .categoryTitle {
         font-size: 12px;
         font-weight: 700;

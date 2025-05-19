@@ -1,0 +1,136 @@
+.productContainer {
+  width: 90% !important;
+  margin: 1px auto;
+  @media screen and (min-width: 1266px) {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    padding-top: 16px;
+  }
+  .sortButton {
+    border: 1px solid #000000 !important;
+    border-radius: 99px;
+    padding: 0px 6px;
+    height: 40px;
+  }
+  .filterContainer {
+    display: flex;
+    overflow-x: auto;
+    width: 100% !important;
+    padding: 8px 8px 8px 8px;
+    gap: 8px;
+    border: none;
+    background-color: red;
+    @media screen and (min-width: 1130px) {
+      width: 1064px;
+    }
+    @media screen and (min-width: 1266px) {
+      display: none;
+    }
+    .filter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: 12px;
+      height: 32px;
+      text-align: center;
+      border-radius: 42px !important;
+      border: 1px solid #715a4199;
+    }
+  }
+  .cardContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 360px;
+    margin: 16px 0px auto auto;
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      width: 768px;
+    }
+
+    .card {
+      width: 180px;
+      position: relative;
+      margin: 0;
+      border-radius: 0px;
+      border: 1px solid #e0e0e0;
+      box-shadow: none;
+      padding-top: 1px;
+      @media screen and (min-width: 768px) {
+        width: 100%;
+      }
+      .addButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #715a41;
+        background-color: #f4ede6;
+        padding: 16px;
+      }
+      .cardTitle {
+        font-size: 12px;
+        color: #000000b2;
+      }
+      .offBadge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: #ffcccc;
+        color: #ff0000;
+        padding: 4px;
+        border-radius: 100%;
+        height: 29px;
+        width: 29px;
+        font-size: 14px;
+      }
+      .weightTitle {
+        font-size: 14px;
+        font-weight: 400;
+        color: #000000;
+      }
+      .priceContainer {
+        border-top: 0.6px solid #0000001a;
+        margin-top: 16px;
+        padding-top: 16px;
+        .price {
+          color: black;
+          font-size: 16px;
+        }
+        .offPrice {
+          color: #ff0000;
+          font-size: 14px;
+        }
+        .toman {
+          color: #00000066;
+          font-size: 9px;
+        }
+        .priceTitle {
+          color: #00000066;
+          font-size: 9.62px;
+        }
+      }
+      .InstallmentContainer {
+        background-color: #008efa;
+        padding: 8px 6px;
+        border-radius: 8px;
+        .installment {
+          color: white;
+          font-size: 12px;
+        }
+        .installmentTitle {
+          color: white;
+          font-size: 9.62px;
+        }
+      }
+    }
+    .card:hover {
+      box-shadow: none;
+    }
+  }
+}

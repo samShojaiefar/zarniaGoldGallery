@@ -1,0 +1,47 @@
+.filterContainer {
+  background-color: #c9a98417;
+  padding: 16px 8px;
+  border-radius: 16px;
+  width: 226px;
+  height: 603px;
+  .searchInput {
+    border: 1px solid #999999;
+    color: #666666;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.02);
+    &:hover {
+      border: 1px solid #999999;
+      color: #666666;
+    }
+  }
+  .priceRange {
+    cursor: pointer;
+    border: 1px solid #00000030;
+    padding: 8px;
+    border-radius: 16px;
+  }
+  .buttonContainer{
+    width: 100%;
+      .filterButton {
+    width: 162px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #715a41;
+    color: white;
+    border: none !important;
+    &:hover {
+      background-color: #715a41 !important;
+      color: white !important;
+      border: none !important;
+    }
+  }
+  .clearFilterButton{
+    color: #715a41;
+    &:hover{
+        color: #715a41;
+        background-color: transparent !important;
+    }
+  }
+  }
+
+}

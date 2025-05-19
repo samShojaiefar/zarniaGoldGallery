@@ -1,0 +1,26 @@
+.BottomFilter {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  bottom: 80px;
+  height: 48px;
+  border-top: 1px solid #e6e6e6;
+  z-index: 1;
+  @media screen and (min-width: 1226px) {
+      display: none;
+    }
+  .sortContainer {
+    cursor: pointer;
+    width: 129px;
+    height: 32px;
+  }
+  .filterContainer {
+    cursor: pointer;
+    width: 129px;
+    height: 32px;
+    border-right: 1px solid #0000001a;
+    @media screen and (min-width: 768px) {
+      width: 145px;
+    }
+  }
+}

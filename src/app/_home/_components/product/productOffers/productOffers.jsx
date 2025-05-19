@@ -4,6 +4,7 @@ import Image from "next/image";
 const { Title, Text } = Typography;
 import style from "./productOffer.module.scss";
 import LeftArrowIcon from "@/app/(common)/_components/icon/leftArrowIcon";
+import { useRouter } from "next/navigation";
 function ProductOffers() {
   const offerProducts = [
     {
@@ -52,6 +53,7 @@ function ProductOffers() {
       Weight: "۱.۰۱۰",
     },
   ];
+  const router = useRouter();
   return (
     <>
       <div className={style.productContainer}>
@@ -66,6 +68,7 @@ function ProductOffers() {
             className={style.showAll}
             icon={<LeftArrowIcon />}
             iconPosition={"end"}
+            onClick={() => router.push("/products")}
           >
             مشاهده بیشتر
           </Button>

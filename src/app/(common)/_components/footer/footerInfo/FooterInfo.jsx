@@ -1,3 +1,4 @@
+'use client';
 import { Flex, Typography } from "antd";
 import Logo from "../../icon/logo";
 import style from "./footerInfo.module.scss";

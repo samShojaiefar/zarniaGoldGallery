@@ -1,5 +1,9 @@
 .footerContainer{
     background-color: #715A41;
+    margin-bottom: 80px;
+    @media screen and (min-width:1266px){
+        margin-bottom: 0px;
+    }
     .footer{
         padding: 32px;
         margin: auto;

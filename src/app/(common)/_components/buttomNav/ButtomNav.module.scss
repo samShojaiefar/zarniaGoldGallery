@@ -1,0 +1,31 @@
+.buttomNavContaner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  position: fixed;
+  bottom: 0;
+  background-color: #ffffff;
+  width: 100%;
+  height: 80px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top: 1px solid #e6e6e6;
+  @media screen and (min-width:1226px){
+    display: none;
+  }
+  .tabContainer {
+    margin: auto;
+    width: 328px;
+    .tab {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 60px;
+      .iconTitle {
+        font-size: 12px;
+      }
+    }
+  }
+}

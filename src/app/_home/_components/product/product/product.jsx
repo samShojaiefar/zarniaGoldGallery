@@ -13,6 +13,7 @@ import Image from "next/image";
 const { Title, Text } = Typography;
 import style from "./product.module.scss";
 import LeftArrowIcon from "@/app/(common)/_components/icon/leftArrowIcon";
+import { useRouter } from "next/navigation"; 
 function Products() {
   const products = [
     {
@@ -75,6 +76,7 @@ function Products() {
       title: "دستبنده مارشال",
     },
   ];
+  const router = useRouter();
   return (
     <>
       <ConfigProvider
@@ -106,6 +108,7 @@ function Products() {
                 className={style.showAll}
                 icon={<LeftArrowIcon />}
                 iconPosition={"end"}
+                onClick={() => router.push("/products")} 
               >
                 مشاهده بیشتر
               </Button>
