@@ -24,13 +24,15 @@
       width: 1000px;
     }
     .categoryItem {
+      padding: 4px;
       width: 160px;
+      height: 130px;
       border: 1px solid #0000001a;
       border-radius: 12px;
       cursor: pointer;
       .categoryImage {
-        max-width: 100px;
-        max-height: 90px;
+        max-width: 90px;
+              height: 130px;
       }
       .categoryTitle {
         font-size: 12px;

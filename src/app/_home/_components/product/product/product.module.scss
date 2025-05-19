@@ -1,6 +1,5 @@
 .productContainer{
-    width: 95% !important;
-padding: 16px;
+    width: 100% !important;
 margin: auto;
     .titleContainer{
         width: 98%;
@@ -25,11 +24,15 @@ margin: auto;
         display: flex;
         overflow-x: auto;
         width: 100%;
-        padding: 16px 0px;
+        padding: 10px ;
         gap: 8px;
         border: none;
         width: 98%;
         margin: auto;
+         &::-webkit-scrollbar {
+           display: none;
+        }
+         scrollbar-width: none;
         @media screen and (min-width:1130px){
             width: 1064px;        }
         .filter{
@@ -51,6 +54,14 @@ margin: auto;
         display: flex;
         margin: auto;
         overflow-x: auto;
+        padding: 10px;
+                &::-webkit-scrollbar {
+           display: none;
+        }
+         scrollbar-width: none;
+        @media screen and (min-width:1130px) {
+            justify-content: center;
+        }
         @media screen and (min-width:1130px){
             justify-content: center;
         }

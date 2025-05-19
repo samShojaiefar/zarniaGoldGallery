@@ -1,50 +1,64 @@
 .productContainer {
-  width: 90% !important;
-  margin: 1px auto;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
   @media screen and (min-width: 1266px) {
-    display: flex;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
     padding-top: 16px;
+    width: 80%;
   }
-  .sortButton {
-    border: 1px solid #000000 !important;
-    border-radius: 99px;
-    padding: 0px 6px;
-    height: 40px;
+}
+
+.mainContent{
+  width: 100%;
+  @media screen and (min-width:1226px){
+           width:auto;
+
   }
-  .filterContainer {
+}
+.sortButton {
+  border: 1px solid #000000;
+  border-radius: 99px;
+  padding: 0px 6px;
+  height: 40px;
+}
+
+.filterContainer {
+  display: flex;
+  overflow-x: auto;
+  width: 95%;
+  gap: 8px;
+  padding: 0px 16px;
+  border: none;
+  padding-bottom: 16px;
+   &::-webkit-scrollbar {
+           display: none;
+        }
+         scrollbar-width: none;
+  @media screen and (min-width: 1130px) {
+    width: 1064px;
+  }
+@media screen and (min-width: 1266px) {
+    display: none;
+  }
+  .filter {
     display: flex;
-    overflow-x: auto;
-    width: 100% !important;
-    padding: 8px 8px 8px 8px;
-    gap: 8px;
-    border: none;
-    background-color: red;
-    @media screen and (min-width: 1130px) {
-      width: 1064px;
-    }
-    @media screen and (min-width: 1266px) {
-      display: none;
-    }
-    .filter {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      white-space: nowrap;
-      font-size: 12px;
-      height: 32px;
-      text-align: center;
-      border-radius: 42px !important;
-      border: 1px solid #715a4199;
-    }
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    width: 109px;
+    height: 32px;
+    text-align: center;
+    border-radius: 42px !important;
+    border: 1px solid #715A4199;
   }
+}
   .cardContainer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     width: 360px;
-    margin: 16px 0px auto auto;
+    margin: auto;
+    padding-top: 5px;
     @media screen and (min-width: 768px) {
       grid-template-columns: repeat(4, 1fr);
       width: 768px;
@@ -53,7 +67,6 @@
     .card {
       width: 180px;
       position: relative;
-      margin: 0;
       border-radius: 0px;
       border: 1px solid #e0e0e0;
       box-shadow: none;
@@ -133,4 +146,3 @@
       box-shadow: none;
     }
   }
-}
