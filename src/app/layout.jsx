@@ -4,7 +4,7 @@ import Header from "./(common)/_components/_header/header";
 import Footer from "./(common)/_components/footer/Footer";
 import BottomNav from "./(common)/_components/buttomNav/ButtomNav";
 import FooterInfo from "./(common)/_components/footer/footerInfo/FooterInfo";
-
+import "./globals.css"
 export default function RootLayout({ children }) {
   return (
     <html
