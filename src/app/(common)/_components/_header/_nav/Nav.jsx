@@ -37,7 +37,7 @@ export default function Nav() {
               </Button>
             </>
           )}
-          <SearchIcon />
+          <SearchIcon width={24} height={24} color={"black"}/>
         </Flex>
       </Flex>
 

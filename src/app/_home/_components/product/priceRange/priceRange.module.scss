@@ -2,7 +2,8 @@
     padding: 16px;
     gap: 16px;
     overflow-x: auto;
-    margin: auto;
+    margin: auto ;
+    margin-bottom: 32px;
      &::-webkit-scrollbar {
            display: none;
         }
@@ -35,6 +36,7 @@
 }
 .titleContainer{
     padding-right: 16px;
+    margin-top: 32px ;
     @media screen and (min-width:1266px){
         display: flex;
         justify-content: center;
