@@ -1,4 +1,9 @@
 .filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
   background-color: #c9a98417;
   padding: 16px 8px;
   border-radius: 16px;

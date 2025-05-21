@@ -1,18 +1,21 @@
 .filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
   background-color: #c9a98417;
   padding: 16px 8px;
   border-radius: 16px;
   width: 226px;
   height: 603px;
   .searchInput {
-    border: 1px solid #999999;
-    color: #666666;
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.02);
-    &:hover {
-      border: 1px solid #999999;
-      color: #666666;
-    }
+    border: 1px solid #999999 !important;
+    color: #666666 !important;
+    border-radius: 12px !important;
+          box-shadow: none !important;
+      outline: none !important;
+    background-color: rgba(0, 0, 0, 0.02) !important;
   }
   .priceRange {
     cursor: pointer;
@@ -38,7 +41,7 @@
   .clearFilterButton{
     color: #715a41;
     &:hover{
-        color: #715a41;
+        color: #715a41 !important;
         background-color: transparent !important;
     }
   }

@@ -13,7 +13,7 @@ const { Text } = Typography;
 export default function FooterInfo() {
   return (
     <>
-      <Flex align="center" justify="center" className={style.footerContainer}>
+      <div className={style.footerContainer}>
         <Flex vertical align="center" justify="center" className={style.footer}>
           <div>
             <Image src={"/image/footer-logo.png"} width={156} height={32} />
@@ -66,7 +66,7 @@ export default function FooterInfo() {
             </Text>
           </div>
         </Flex>
-      </Flex>
+      </div>
     </>
   );
 }

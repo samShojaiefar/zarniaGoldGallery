@@ -13,7 +13,7 @@ const Filter = () => {
   if (!isDesktop) return null;
 
   return (
-    <Flex justify="space-between" align="center" gap={16} vertical className={style.filterContainer}>
+    <div className={style.filterContainer}>
       <Flex  gap={16} vertical>
         <Flex gap={6} align="center">
           <FilterIcon />
@@ -56,7 +56,7 @@ const Filter = () => {
         <Button className={style.clearFilterButton} type="text">حذف همه</Button>
         <Button className={style.filterButton}>فیلتر</Button>
       </Flex>
-    </Flex>
+    </div>
   );
 };
 

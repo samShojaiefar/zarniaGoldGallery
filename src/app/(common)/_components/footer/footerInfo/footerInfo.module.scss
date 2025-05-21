@@ -1,4 +1,7 @@
 .footerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #715A41;
     margin-bottom: 80px;
     @media screen and (min-width:1266px){
