@@ -11,20 +11,31 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-top: 1px solid #e6e6e6;
-  @media screen and (min-width:1226px){
+  @media screen and (min-width: 1226px) {
     display: none;
+    background-color: transparent;
+    border: none;
   }
   .tabContainer {
     margin: auto;
     width: 328px;
+    @media screen and (min-width: 1226px) {
+      display: none;
+    }
     .tab {
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
       width: 60px;
+      @media screen and (min-width: 1226px) {
+        display: none;
+      }
       .iconTitle {
         font-size: 12px;
+        @media screen and (min-width: 1226px) {
+          display: none;
+        }
       }
     }
   }

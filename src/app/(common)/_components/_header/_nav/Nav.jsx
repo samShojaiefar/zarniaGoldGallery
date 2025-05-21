@@ -14,8 +14,8 @@ export default function Nav() {
   const router = useRouter();
   const { isMobile, isTablet, isDesktop } = useResponsive();
   return (
-    <Flex vertical className={style.navContainer}>
-      <Flex className={style.navHeader} align="center" justify="space-between">
+    <div  className={style.navContainer}>
+      <div className={style.navHeader}>
         <Logo width={156} height={32} />
         <Flex gap={"32px"}>
           {isDesktop && (
@@ -39,11 +39,11 @@ export default function Nav() {
           )}
           <SearchIcon width={24} height={24} color={"black"}/>
         </Flex>
-      </Flex>
+      </div>
 
       {isDesktop && (
         <>
-          <Flex className={style.navLinkContainer} gap={"32px"}>
+          <div className={style.navLinkContainer}>
             <Text
               onClick={() => router.push("/")}
               className={style.navLink}
@@ -55,9 +55,9 @@ export default function Nav() {
               <ArrowIcon width={24} height={24} />
             </Flex>
             <Text className={style.navLink}>تماس با ما</Text>
-          </Flex>
+          </div>
         </>
       )}
-    </Flex>
+    </div>
   );
 }

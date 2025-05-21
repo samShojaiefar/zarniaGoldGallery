@@ -10,7 +10,7 @@ export default function Banner() {
   return ( 
     <div> 
 
-      <Flex className={style.banner} vertical  align="center"> 
+      <div className={style.banner}> 
         <Flex className={style.bannerContent} vertical  align="center">
         <Title className={style.bannerTitle} level={4}>قسطی پرداخت کن! </Title> 
         <Flex align="center" gap={"large"}> 
@@ -25,7 +25,7 @@ export default function Banner() {
         </Flex> 
         <Button className={style.bannerButton}>فروشگاه</Button>
         </Flex>
-      </Flex>
+      </div>
     </div>
   ); 
 }

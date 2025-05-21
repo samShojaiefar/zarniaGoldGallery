@@ -144,35 +144,46 @@ const ProductsPage = () => {
           },
         }}
       >
-        <Flex gap={16} className={style.productContainer}>
+        <div  className={style.productContainer}>
           <Filter />
-          
-          <Flex vertical justify="center" className={style.mainContent}>
-                       
-            {isDesktop ?(
-              <Flex align="center" style={{ width: "100%" }} justify="space-between">
+
+          <div className={style.mainContent}>
+            {isDesktop ? (
+              <Flex
+                align="center"
+                style={{ width: "100%" }}
+                justify="space-between"
+              >
                 <Breadcrumb style={{ margin: "16px 0" }}>
                   <Breadcrumb.Item>خانه</Breadcrumb.Item>
                   <Breadcrumb.Item>فروشگاه</Breadcrumb.Item>
                 </Breadcrumb>
                 <Flex className={style.sortButton} align="center">
-                  <Button type="text" icon={<SortIcon />} className={style.sortContainer}>
+                  <Button
+                    type="text"
+                    icon={<SortIcon />}
+                    className={style.sortContainer}
+                  >
                     مرتب سازی
                   </Button>
                   <ArrowIcon width={20} height={20} />
                 </Flex>
               </Flex>
-            ):            <Radio.Group
-              block
-              className={style.filterContainer}
-              defaultValue={"انگشتر"}
-            >
-              {filters.map((filter) => (
-                <div className={style.filter} key={filter.title}>
-                  <Radio.Button value={filter.title}>{filter.title}</Radio.Button>
-                </div>
-              ))}
-            </Radio.Group>}
+            ) : (
+              <Radio.Group
+                block
+                className={style.filterContainer}
+                defaultValue={"انگشتر"}
+              >
+                {filters.map((filter) => (
+                  <div className={style.filter} key={filter.title}>
+                    <Radio.Button value={filter.title}>
+                      {filter.title}
+                    </Radio.Button>
+                  </div>
+                ))}
+              </Radio.Group>
+            )}
 
             <div className={style.cardContainer}>
               {products.map((product) => (
@@ -180,7 +191,14 @@ const ProductsPage = () => {
                   key={product.title}
                   className={style.card}
                   hoverable
-                  cover={<Image src={product.image} width={143} height={143} alt={product.title} />}
+                  cover={
+                    <Image
+                      src={product.image}
+                      width={143}
+                      height={143}
+                      alt={product.title}
+                    />
+                  }
                 >
                   <Flex vertical>
                     <Text className={style.cardTitle}>{product.title}</Text>
@@ -196,7 +214,11 @@ const ProductsPage = () => {
                     </Flex>
                   </Flex>
                   <Flex gap={"6px"} vertical>
-                    <Flex className={style.priceContainer} align="center" justify="space-between">
+                    <Flex
+                      className={style.priceContainer}
+                      align="center"
+                      justify="space-between"
+                    >
                       <Text className={style.priceTitle}>قیمت کل</Text>
                       <Flex align="center" gap={"2px"}>
                         <Text className={style.price}>{product.price}</Text>
@@ -206,8 +228,12 @@ const ProductsPage = () => {
                     <Flex gap={8} vertical>
                       <div className={style.InstallmentContainer}>
                         <Flex align="center" justify="space-between">
-                          <Text className={style.installmentTitle}>هر قسط:</Text>
-                          <Text className={style.installment}>{product.installment} تومان</Text>
+                          <Text className={style.installmentTitle}>
+                            هر قسط:
+                          </Text>
+                          <Text className={style.installment}>
+                            {product.installment} تومان
+                          </Text>
                         </Flex>
                       </div>
                       <Button className={style.addButton} icon={<AddIcon />}>
@@ -218,8 +244,8 @@ const ProductsPage = () => {
                 </Card>
               ))}
             </div>
-          </Flex>
-        </Flex>
+          </div>
+        </div>
       </ConfigProvider>
       <BottomFilter />
     </>

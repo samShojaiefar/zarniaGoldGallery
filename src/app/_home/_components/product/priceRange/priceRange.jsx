@@ -5,10 +5,10 @@ import style from "./priceRange.module.scss"
  function PriceRange() {
   return (
    <>
-   <Flex className={style.titleContainer}>
+   <div className={style.titleContainer}>
    <Title level={4}>بازه قیمتی</Title>
-   </Flex>
-   <Flex vertical className={style.priceRangeContainer}>
+   </div>
+   <div  className={style.priceRangeContainer}>
 
    <Flex>
     <Button className={style.range}>تا ۲ میلیون تومان</Button>
@@ -16,7 +16,7 @@ import style from "./priceRange.module.scss"
     <Button className={style.range}>تا ۱۰ میلیون تومان</Button>
     <Button className={style.range}>بالای ۱۰ میلیون تومان</Button>
    </Flex>
-   </Flex>
+   </div>
    </>
   );
 }

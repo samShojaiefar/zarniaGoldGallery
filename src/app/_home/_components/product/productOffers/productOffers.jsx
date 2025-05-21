@@ -57,10 +57,8 @@ function ProductOffers() {
   return (
     <>
       <div className={style.productContainer}>
-        <Flex
+        <div
           className={style.titleContainer}
-          align="center"
-          justify="space-between"
         >
           <Title level={4}>تخفیف‌ها</Title>
           <Button
@@ -72,7 +70,7 @@ function ProductOffers() {
           >
             مشاهده بیشتر
           </Button>
-        </Flex>
+        </div>
 
         <Flex className={style.cardContainer} gap={"16px"}>
           {offerProducts.map((product, index) => (

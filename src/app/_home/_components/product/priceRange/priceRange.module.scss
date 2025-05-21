@@ -1,4 +1,7 @@
 .priceRangeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 16px;
     gap: 16px;
     overflow-x: auto;

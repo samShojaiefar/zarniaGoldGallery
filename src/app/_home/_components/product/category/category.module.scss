@@ -1,8 +1,9 @@
 .categoryContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-self: center;
-  margin: auto;
+  margin:32px auto;
   .title {
     padding-right: 16px;
     padding: 16px;

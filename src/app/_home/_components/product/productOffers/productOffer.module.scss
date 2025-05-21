@@ -2,9 +2,12 @@
     width: 100% !important;
 margin: auto;
     .titleContainer{
-        width: 95%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
         margin: auto;
-        padding:16px;
+        padding:10px;
         padding-top: 30px;
         border-top: 1px solid #0000001A;
         @media screen and (min-width:1130px){

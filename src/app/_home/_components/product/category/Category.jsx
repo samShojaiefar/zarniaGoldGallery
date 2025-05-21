@@ -19,7 +19,7 @@ function Category() {
 
   return (
     <>
-      <Flex vertical className={style.categoryContainer}>
+      <div  className={style.categoryContainer}>
         <Title className={style.title} level={4}>
           دسته بندی محصولات
         </Title>
@@ -50,7 +50,7 @@ function Category() {
             );
           })}
         </Flex>
-      </Flex>
+      </div>
     </>
   );
 }

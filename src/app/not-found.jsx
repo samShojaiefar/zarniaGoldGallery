@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import  NotFoundIcon  from './(common)/_components/icon/404Icon'; 
 import { Button, Flex, Typography } from 'antd';
-import style from "./404.module.scss"
+import style from "./not-found.module.scss"
 const { Text } = Typography;
 
 export default function NotFound() {

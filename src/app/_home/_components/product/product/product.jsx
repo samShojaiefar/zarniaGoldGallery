@@ -96,11 +96,9 @@ function Products() {
         }}
       >
         <div className={style.productContainer}>
-          <Flex vertical>
-            <Flex
+          <div >
+            <div
               className={style.titleContainer}
-              align="center"
-              justify="space-between"
             >
               <Title level={4}>محصولات</Title>
               <Button
@@ -112,7 +110,7 @@ function Products() {
               >
                 مشاهده بیشتر
               </Button>
-            </Flex>
+            </div>
             <Radio.Group
               block
               className={style.filterContainer}
@@ -126,7 +124,7 @@ function Products() {
                 </div>
               ))}
             </Radio.Group>
-          </Flex>
+          </div>
           <Flex className={style.cardContainer} gap={"16px"}>
             {products.map((product) => (
               <Flex gap={"5rem"}>
