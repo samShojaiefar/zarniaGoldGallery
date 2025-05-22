@@ -6,21 +6,31 @@
   height: 48px;
   border-top: 1px solid #e6e6e6;
   z-index: 1;
-  @media screen and (min-width: 1226px) {
-      display: none;
-    }
+    @media screen and (min-width: 1226px) {
+    display: none;
+    background-color: transparent;
+    border: none;
+  }
   .sortContainer {
     cursor: pointer;
     width: 129px;
     height: 32px;
+      @media screen and (min-width: 1226px) {
+    display: none;
+    background-color: transparent;
+    border: none;
+  }
   }
   .filterContainer {
+      @media screen and (min-width: 1226px) {
+    display: none;
+    background-color: transparent;
+    border: none;
+  }
     cursor: pointer;
-    width: 129px;
+    width: 160px;
     height: 32px;
     border-right: 1px solid #0000001a;
-    @media screen and (min-width: 768px) {
-      width: 145px;
-    }
+    border-radius: 0;
   }
 }

@@ -5,7 +5,7 @@
   justify-content: center;
   @media screen and (min-width: 1266px) {
     gap: 16px;
-    padding-top: 16px;
+    padding: 16px 0;
     width: 80%;
   }
 }
@@ -24,6 +24,8 @@
   border-radius: 99px;
   padding: 0px 6px;
   height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .filterContainer {
@@ -73,7 +75,7 @@
     width: 180px;
     position: relative;
     border-radius: 0px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #e0e0e0 !important;
     box-shadow: none;
     padding-top: 1px;
     @media screen and (min-width: 768px) {
@@ -118,7 +120,7 @@
       padding-top: 16px;
       .price {
         color: #00000066;
-        font-size: 16px;
+        font-size: 10px;
       }
       .offPrice {
         color: #ff0000;

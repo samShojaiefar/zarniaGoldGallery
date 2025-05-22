@@ -144,7 +144,7 @@ const ProductsPage = () => {
           },
         }}
       >
-        <Flex gap={16} className={style.productContainer}>
+        <div className={style.productContainer}>
           <Filter />
           
           <Flex vertical justify="center" className={style.mainContent}>
@@ -155,12 +155,12 @@ const ProductsPage = () => {
                   <Breadcrumb.Item>خانه</Breadcrumb.Item>
                   <Breadcrumb.Item>فروشگاه</Breadcrumb.Item>
                 </Breadcrumb>
-                <Flex className={style.sortButton} align="center">
+                <div className={style.sortButton}>
                   <Button type="text" icon={<SortIcon />} className={style.sortContainer}>
                     مرتب سازی
                   </Button>
                   <ArrowIcon width={20} height={20} />
-                </Flex>
+                </div>
               </Flex>
             ):            <Radio.Group
               block
@@ -224,7 +224,7 @@ const ProductsPage = () => {
                         ))}
             </div>
           </Flex>
-        </Flex>
+        </div>
       </ConfigProvider>
       <BottomFilter />
     </>
