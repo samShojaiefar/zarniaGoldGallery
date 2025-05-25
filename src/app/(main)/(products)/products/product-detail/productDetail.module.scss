@@ -1,0 +1,24 @@
+.productDetailContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  .imageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 344px;
+    .favorite{
+    position: absolute;
+    top: 0;
+    left: 8px ;
+}
+
+}
+  .thumbnail{
+    cursor: pointer;
+    border-radius: 16px;
+    border: 1px solid #0000001A;
+}
+}

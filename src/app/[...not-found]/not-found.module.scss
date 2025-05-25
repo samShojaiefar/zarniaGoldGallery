@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  background-color: #ede5df;
+  height: 100vh;
+  .text {
+    color: #684429cc;
+    font-size: 16px;
+  }
+  .backStore {
+    background-color: #715a41;
+    border-radius: 12px;
+    padding: 8px;
+    width: 192px;
+    height: 48px;
+    color: white;
+    font-size: 16px;
+    border: none !important;
+
+    &:hover {
+      background-color: #715a41 !important;
+      color: white !important;
+      border: none !important;
+    }
+  }
+}
