@@ -8,7 +8,7 @@ import BottomNav from "./(common)/_components/buttomNav/ButtomNav";
 import useResponsive from "@/lib/hocks/useResponsive";
 
 export const metadata = {
-  title: "گالری زریا",
+  title: "گالری زرنیا",
 };
 
 export default function RootLayout({ children }) {
