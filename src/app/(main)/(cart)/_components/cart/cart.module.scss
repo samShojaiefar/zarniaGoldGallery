@@ -1,0 +1,34 @@
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  .cartCard {
+    display: flex;
+    padding: 16px 0px;
+    width: 328px;
+    border: none;
+    border-top: 1px solid #00000080 !important;
+    border-radius: 0;
+    &:first-child {
+      border-top: none !important;
+    }
+    .title{
+        font-size: 1.2rem !important;
+    }
+    .wight{
+        font-size: 1.2rem !important;
+    }
+    .price{
+        font-size: 1.6rem !important;
+        margin-right: 64px;
+    }
+    .quntitybutton{
+        background-color: #EDE5DF;
+        width: 32px;
+        height: 32px;
+        padding: 2px;
+        border: none;
+        border-radius: 12px;
+    }
+  }
+}

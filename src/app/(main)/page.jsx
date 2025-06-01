@@ -3,7 +3,7 @@
 import { Spin } from "antd";
 import dynamic from "next/dynamic";
 
-const Home = dynamic(() => import("./_home/_components/home"), {
+const Home = dynamic(() => import("./(home)/_components/home"), {
   loading: () => <Spin />,
 });
 
