@@ -74,7 +74,7 @@ function ProductOffers() {
 
         <Flex className={style.cardContainer} gap={"16px"}>
           {offerProducts.map((product, index) => (
-            <Flex gap={"5rem"}>
+            <Flex key={offerProducts} gap={"5rem"}>
               <Card
                 className={style.card}
                 hoverable

@@ -91,7 +91,7 @@ function RelatedProducts() {
           </div>
           <Flex className={style.cardContainer} gap={"16px"}>
             {products.map((product) => (
-              <Flex gap={"5rem"}>
+              <Flex key={product.title} gap={"5rem"}>
                 <Card
                   className={style.card}
                   hoverable

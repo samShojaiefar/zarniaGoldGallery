@@ -11,9 +11,9 @@ import {
 import useResponsive from "@/lib/hooks/useResponsive"
 import style from "./discountProductsList.module.scss";
 import Image from "next/image";
-import ArrowIcon from "../../(common)/_components/icon/arrowIcon";
-import SortIcon from "../../(common)/_components/icon/SortIcon";
-import Filter from "../_components/filter/Filter";
+import ArrowIcon from "../../../../(common)/_components/icon/ArrowIcon";
+import SortIcon from "../../../../(common)/_components/icon/SortIcon";
+import Filter from "@/app/(main)/(common)/_components/filter/Filter";
 import BottomFilter from "../../../../(common)/_components/bottomFilter/BottomFilter";
 const { Text } = Typography;
 
@@ -187,7 +187,7 @@ const DiscountProductsList = () => {
 
             <div className={style.cardContainer}>
               {offerProducts.map((product, index) => (
-                <Flex gap={"5rem"}>
+                <Flex key={product.title} gap={"5rem"}>
                   <Card
                     className={style.card}
                     hoverable

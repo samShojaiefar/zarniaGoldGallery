@@ -117,7 +117,7 @@ function Products() {
               defaultValue={"جدیدترین‌ها"}
             >
               {filters.map((filter) => (
-                <div className={style.filter}>
+                <div key={filter.title} className={style.filter}>
                   <Radio.Button key={filter.title} value={filter.title}>
                     {filter.title}
                   </Radio.Button>
@@ -127,7 +127,7 @@ function Products() {
           </div>
           <Flex className={style.cardContainer} gap={"16px"}>
             {products.map((product) => (
-              <Flex gap={"5rem"}>
+              <Flex key={product.title} gap={"5rem"}>
                 <Card
                   className={style.card}
                   hoverable

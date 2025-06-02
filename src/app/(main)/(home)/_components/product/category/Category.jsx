@@ -33,6 +33,7 @@ function Category() {
           {categories.map((category) => {
             return (
               <Flex
+                key={category.id}
                 align="center"
                 vertical
                 justify="center"
