@@ -35,6 +35,7 @@ function Auth({ onClose }) {
       footer={null}
       closable={false}
       width={380}
+      centered
     >
       <Flex justify="space-between" align="center">
         <Text className={style.title}>ورود / ثبت‌نام</Text>
@@ -68,7 +69,7 @@ function Auth({ onClose }) {
               </Form.Item>
             </Flex>
             <Form.Item>
-              <Button type="primary" htmlType="submit" block>
+              <Button type="button" style={{backgroundColor:"#715A41",color:"white"}} htmlType="submit" block>
                 ادامه
               </Button>
             </Form.Item>

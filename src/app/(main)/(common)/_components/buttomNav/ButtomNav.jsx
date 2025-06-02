@@ -112,7 +112,8 @@ const BottomNav = () => {
               color={activeTab === "profile" ? "black" : "#B3B3B3"}
             />
           }
-          onClick={() => router.push("/profile")}
+          onClick={() => {
+              setShowAuthModal(true)}}
         >
           <Text
             className={style.iconTitle}

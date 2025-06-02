@@ -66,7 +66,7 @@ function ProductOffers() {
             className={style.showAll}
             icon={<LeftArrowIcon />}
             iconPosition={"end"}
-            onClick={() => router.push("/discount-products")}
+            onClick={() => router.push("/products")}
           >
             مشاهده بیشتر
           </Button>

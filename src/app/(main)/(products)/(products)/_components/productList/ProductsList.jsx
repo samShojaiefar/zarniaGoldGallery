@@ -97,6 +97,7 @@ const { data, isLoading, error } = useGetProducts({
               data?.data?.length > 0 &&
               data.data.map((product) => (
                 <Card
+                  onClick={() => router.push(`/products/${product.slug}`)}
                   key={product.id}
                   className={style.card}
                   hoverable
@@ -111,7 +112,8 @@ const { data, isLoading, error } = useGetProducts({
                   }
                 >
                   <Flex vertical>
-                    <Text className={style.cardTitle}>
+                    <Text className={style.cardTitle}
+                          onClick={() => router.push(`/products/${product.slug}`)} >
                       {toPersianDigits(product.name)}
                     </Text>
                     <Flex gap={8} vertical>

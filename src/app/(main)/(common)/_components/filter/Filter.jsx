@@ -15,6 +15,7 @@ import SearchIcon from "@/app/(main)/(common)/_components/icon/searchIcon";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
+import {useGetCategories} from "@/app/(main)/(products)/(products)/_hooks/api/categoryApi";
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -36,6 +37,7 @@ const Filter = () => {
     setSearchValue(searchQuery);
   }, [searchQuery]);
 
+  const {isLoading, data} = useGetCategories();
   const applyFilters = () => {
     const params = new URLSearchParams(window.location.search);
 
@@ -92,10 +94,9 @@ const Filter = () => {
             key="1"
           >
             <Flex vertical gap={8}>
-              <Checkbox>انگشتر</Checkbox>
-              <Checkbox>گردنبند</Checkbox>
-              <Checkbox>گوشواره</Checkbox>
-              <Checkbox>زنجیر</Checkbox>
+              {!isLoading && data?.data?.length > 0 && data.data.map((category)=>(
+                <Checkbox key={category.id}>{category.title}</Checkbox>
+              ))}
             </Flex>
           </Panel>
 
@@ -106,11 +107,13 @@ const Filter = () => {
           >
             <Flex vertical gap={8}>
               <Input
+                  type={"number"}
                 placeholder="حداقل قیمت"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
               />
               <Input
+                  type={"number"}
                 placeholder="حداکثر قیمت"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}

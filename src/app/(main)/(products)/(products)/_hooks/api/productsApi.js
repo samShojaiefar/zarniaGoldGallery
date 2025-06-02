@@ -22,6 +22,7 @@ const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
 export const useGetProducts = ({ search, minPrice, maxPrice }) => {
   const params = new URLSearchParams();
 
+  params.append("per_page", "12")
   if (search) params.append("search", search);
   if (minPrice) params.append("minPrice", minPrice);
   if (maxPrice) params.append("maxPrice", maxPrice);

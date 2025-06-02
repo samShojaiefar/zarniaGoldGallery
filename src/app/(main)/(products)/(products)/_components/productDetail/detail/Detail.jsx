@@ -21,7 +21,7 @@ const Detail = ({product}) => {
             <Flex gap={24} vertical>
               <Text>۱۸</Text>
               <Text>۹</Text>
-              <Text>۶,۵۰۰,۰۰۰ تومان</Text>
+              <Text>{toPersianDigits(product.price)} تومان</Text>
             </Flex>
           </Flex>
 
@@ -45,7 +45,9 @@ const Detail = ({product}) => {
       </div>
       <div className={style.descraptionContainer}>
         <Text type="secondary" className={style.descraiptionTitle}>
-          دسته:  انگشتر طلا مینیمال, انگشتر و حلقه طلا
+          دسته:{product.categories.map((category)=>(
+            category.title+" ,"
+        ))}
         </Text>
         <Flex vertical>
           <Text type="secondary">توضیحات:</Text>
