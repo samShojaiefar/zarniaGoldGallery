@@ -9,25 +9,36 @@ import {
   Typography,
   Spin,
   Empty,
+  Input,
 } from "antd";
 import style from "./productList.module.scss";
 import useResponsive from "@/lib/hooks/useResponsive";
 import SortIcon from "@/app/(main)/(common)/_components/icon/SortIcon";
 import Filter from "@/app/(main)/(common)/_components/filter/Filter";
 import BottomFilter from "@/app/(main)/(common)/_components/bottomFilter/BottomFilter";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import ArrowIcon from "@/app/(main)/(common)/_components/icon/ArrowIcon";
 import AddIcon from "@/app/(main)/(common)/_components/icon/AddIcon";
 import { useGetProducts } from "../../_hooks/api/productsApi";
 import Image from "next/image";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
+import { useState } from "react";
 const { Text } = Typography;
 
 const ProductsList = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search");
+  const minPrice = searchParams.get("min_price");
+  const maxPrice = searchParams.get("max_price");
+  const [minPriceInput, setMinPriceInput] = useState(minPrice || "");
+const [maxPriceInput, setMaxPriceInput] = useState(maxPrice || "");
   const { isDesktop } = useResponsive();
-  const { data, error, isLoading } = useGetProducts();
-
+const { data, isLoading, error } = useGetProducts({
+  search: searchQuery,
+  minPrice: minPrice,
+  maxPrice: maxPrice,
+});
   const filters = [
     { title: "انگشتر" },
     { title: "گردنبند" },
@@ -64,6 +75,7 @@ const ProductsList = () => {
                 <ArrowIcon width={24} height={24} />
               </div>
             </Flex>
+            
           ) : (
             <Radio.Group
               block
@@ -99,7 +111,9 @@ const ProductsList = () => {
                   }
                 >
                   <Flex vertical>
-                    <Text className={style.cardTitle}>{product.name}</Text>
+                    <Text className={style.cardTitle}>
+                      {toPersianDigits(product.name)}
+                    </Text>
                     <Flex gap={8} vertical>
                       <Flex justify="space-between">
                         <Text className={style.weight}>وزن:</Text>

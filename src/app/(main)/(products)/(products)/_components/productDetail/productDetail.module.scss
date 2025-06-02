@@ -50,6 +50,7 @@
       .thumbnailContainer {
         display: flex;
         flex-direction: row;
+        overflow-x: scroll !important;
         gap: 8px;
         margin: auto;
         @media screen and (min-width: 768px) {

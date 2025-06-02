@@ -1,11 +1,11 @@
 "use client";
 import { Button, Flex, Typography } from "antd";
-import style from "./bottomPurchaseInfo.module.scss"
+import style from "./PurchaseInfo.module.scss"
 import Image from "next/image";
 import Product from "@/app/(main)/(home)/_components/product/product";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 const {Text}=Typography
-function BottomPurchaseInfo({product}) {
+function PurchaseInfo({product}) {
   return (
     <div className={style.purchesInfoContainer}>
       <div className={style.SnappPay}>
@@ -35,4 +35,4 @@ function BottomPurchaseInfo({product}) {
     </div>
   );
 }
-export default BottomPurchaseInfo;
+export default PurchaseInfo;

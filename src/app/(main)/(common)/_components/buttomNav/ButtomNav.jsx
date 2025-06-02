@@ -7,12 +7,14 @@ import StoreIcon from "../icon/StoreIcon";
 import CartIcon from "../icon/CartIcon";
 import ProfileIcon from "../icon/profileIcon";
 import style from "./ButtomNav.module.scss";
-
+import { useState } from "react";
+import Auth from "@/app/(main)/(auth)/_auth/Auth"
 const { Text } = Typography;
 
 const BottomNav = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const getActiveTab = () => {
     if (pathname === "/") return "home";
@@ -81,7 +83,14 @@ const BottomNav = () => {
               color={activeTab === "cart" ? "black" : "#B3B3B3"}
             />
           }
-          onClick={() => router.push("/cart")}
+          onClick={() => {
+            // if (isAuthenticated) {
+            //   router.push("/cart");
+            // } else {
+            //   setShowAuthModal(true); // نمایش مودال ورود
+            // }
+            setShowAuthModal(true);
+          }}
         >
           <Text
             className={style.iconTitle}
@@ -115,6 +124,7 @@ const BottomNav = () => {
           </Text>
         </Button>
       </Flex>
+      {showAuthModal && <Auth onClose={() => setShowAuthModal(false)} />}
     </Flex>
   );
 };

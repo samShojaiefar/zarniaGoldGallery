@@ -1,14 +1,16 @@
 import { Typography, Flex, Select } from "antd";
 import Title from "antd/es/typography/Title";
 import style from "./detail.module.scss";
-
+import { toPersianDigits } from "@/lib/utils/toPersionNumber";
+import PurchaseInfo from "../PurchaseInfo/PurchaseInfo"
 const { Text } = Typography;
 
-const Detail = () => {
+const Detail = ({product}) => {
+
   return (
     <div className={style.detailWrapper}>
       <div className={style.detailContainer}>
-        <Title level={4}>انگشتر مینمال طرح چشم</Title>
+        <Title level={4}>{product.name}</Title>
         <Flex gap={24} vertical>
           <Flex gap={24}>
             <Flex gap={24} vertical>
@@ -27,11 +29,9 @@ const Detail = () => {
             <div className={style.weightWrapper}>
               <Text type="secondary">وزن:</Text>
               <Select
-                defaultValue="1.01"
+                defaultValue="first"
                 options={[
-                  { label: "۱.۰۱", value: "1.01" },
-                  { label: "۱.۰۲", value: "1.02" },
-                  { label: "۱.۰۳", value: "1.03" },
+                  { label: `${toPersianDigits(product.weight)}`, value: "first" },
                 ]}
                 bordered={false}
                 className={style.customSelect}
@@ -50,12 +50,11 @@ const Detail = () => {
         <Flex vertical>
           <Text type="secondary">توضیحات:</Text>
           <Text type="secondary">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-            استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است،{" "}
+            {product.description}
           </Text>
         </Flex>
       </div>
+      <PurchaseInfo product={product}/>
     </div>
   );
 };

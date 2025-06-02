@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/(main)/(auth)/_auth/Auth.jsx", "src/app/(main)/(products)/(products)/_hooks/api/productsApi.js"  ],
   "exclude": [
     "node_modules"
   ]

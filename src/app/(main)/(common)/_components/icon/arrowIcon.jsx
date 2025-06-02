@@ -4,6 +4,7 @@ export default function ArrowIcon({ width, height, color }) {
       width={width}
       height={height}
       color={color}
+      className={className}
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
