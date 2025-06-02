@@ -17,15 +17,16 @@ import Filter from "@/app/(main)/(common)/_components/filter/Filter";
 import BottomFilter from "@/app/(main)/(common)/_components/bottomFilter/BottomFilter";
 import { useRouter } from "next/navigation";
 import ArrowIcon from "@/app/(main)/(common)/_components/icon/ArrowIcon";
+import AddIcon from   "@/app/(main)/(common)/_components/icon/AddIcon"
 import { useGetProducts } from "../../_hooks/api/productsApi";
-
+import Image from "next/image"; 
 const { Text } = Typography;
 
 const ProductsList = () => {
   const router = useRouter();
   const { isDesktop } = useResponsive();
  const {data,error,isLoading}=useGetProducts()
- console.log(data);
+  
  
   const filters = [
     { title: "انگشتر" },
@@ -80,12 +81,13 @@ const ProductsList = () => {
           )}
 
           <div className={style.cardContainer}>
-            {/* {products.map((product) => (
+          {!isLoading && data?.data?.length > 0 && (
+            data.data.map((product) => (
               <Card
                 key={product.id}
                 className={style.card}
                 hoverable
-                onClick={() => router.push(`/products/${product.id}`)}
+                onClick={() => router.push(`/products/${product.slug}`)}
                 cover={
                   <Image
                     src={product.image}
@@ -117,7 +119,7 @@ const ProductsList = () => {
                     <Text className={style.priceTitle}>قیمت کل</Text>
                     <Flex align="center" gap={"2px"}>
                       <Text className={style.price}>
-                        {product.price_without_discount}
+                        {product.price}
                       </Text>
                       <Text className={style.toman}> تومان</Text>
                     </Flex>
@@ -127,7 +129,7 @@ const ProductsList = () => {
                       <Flex align="center" justify="space-between">
                         <Text className={style.installmentTitle}>هر قسط:</Text>
                         <Text className={style.installment}>
-                          {product.snap_pay_each_installment} تومان
+                          {product.snapp_pay_each_installment} تومان
                         </Text>
                       </Flex>
                     </div>
@@ -137,7 +139,9 @@ const ProductsList = () => {
                   </Flex>
                 </Flex>
               </Card>
-            ))} */}
+            ))
+          )}
+            
           </div>
         </div>
       </div>
