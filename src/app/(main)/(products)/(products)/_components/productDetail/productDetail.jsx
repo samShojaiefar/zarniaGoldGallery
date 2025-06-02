@@ -3,9 +3,9 @@ import FavoriteIcon from "@/app/(main)/(common)/_components/icon/favorite";
 import { Breadcrumb, Flex } from "antd";
 import Image from "next/image";
 import style from "./productDetail.module.scss";
-import Detail from "./components/detail/Detail";
-import RelatedProducts from "./components/relatedProducts/RelatedProducts";
-import BottomPurchaseInfo from "./components/bottomPurchaseInfo/BottomPurchaseInfo";
+import Detail from "./detail/Detail";
+import RelatedProducts from "./relatedProducts/RelatedProducts";
+import BottomPurchaseInfo from "./bottomPurchaseInfo/BottomPurchaseInfo";
 const ProductDetail = () => {
   return (
     <>
