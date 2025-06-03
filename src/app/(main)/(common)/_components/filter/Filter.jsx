@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Collapse,
-  Flex,
-  Input,
-  Typography,
-  Checkbox,
-  Button
-} from "antd";
+import { Collapse, Flex, Input, Typography, Checkbox, Button } from "antd";
 import style from "./filter.module.scss";
 import useResponsive from "@/lib/hooks/useResponsive";
 import FilterIcon from "@/app/(main)/(common)/_components/icon/FilterIcon";
@@ -15,7 +8,7 @@ import SearchIcon from "@/app/(main)/(common)/_components/icon/searchIcon";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
-import {useGetCategories} from "@/app/(main)/(products)/(products)/_hooks/api/categoryApi";
+import { useGetCategories } from "@/app/(main)/(products)/(products)/_hooks/api/categoryApi";
 
 const { Text } = Typography;
 const { Panel } = Collapse;
@@ -37,7 +30,7 @@ const Filter = () => {
     setSearchValue(searchQuery);
   }, [searchQuery]);
 
-  const {isLoading, data} = useGetCategories();
+  const { isLoading, data } = useGetCategories();
   const applyFilters = () => {
     const params = new URLSearchParams(window.location.search);
 
@@ -83,7 +76,7 @@ const Filter = () => {
           className={style.searchInput}
           placeholder="جست‌وجو"
           prefix={<SearchIcon color="#666666" />}
-          value={searchValue}
+          value={toPersianDigits(searchValue)}
           onChange={(e) => setSearchValue(e.target.value)}
         />
 
@@ -94,9 +87,11 @@ const Filter = () => {
             key="1"
           >
             <Flex vertical gap={8}>
-              {!isLoading && data?.data?.length > 0 && data.data.map((category)=>(
-                <Checkbox key={category.id}>{category.title}</Checkbox>
-              ))}
+              {!isLoading &&
+                data?.data?.length > 0 &&
+                data.data.map((category) => (
+                  <Checkbox key={category.id}>{category.title}</Checkbox>
+                ))}
             </Flex>
           </Panel>
 
@@ -107,14 +102,14 @@ const Filter = () => {
           >
             <Flex vertical gap={8}>
               <Input
-                  type={"number"}
-                placeholder="حداقل قیمت"
+                placeholder="از قیمت (تومان)"
+                className={style.rangeInput}
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
               />
               <Input
-                  type={"number"}
-                placeholder="حداکثر قیمت"
+                placeholder="تا قیمت (تومان)"
+                className={style.rangeInput}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
               />
@@ -124,7 +119,11 @@ const Filter = () => {
       </Flex>
 
       <Flex className={style.buttonContainer} align="center">
-        <Button className={style.clearFilterButton} type="text" onClick={clearFilters}>
+        <Button
+          className={style.clearFilterButton}
+          type="text"
+          onClick={clearFilters}
+        >
           حذف همه
         </Button>
         <Button className={style.filterButton} onClick={applyFilters}>

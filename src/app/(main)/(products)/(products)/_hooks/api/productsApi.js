@@ -19,25 +19,22 @@ const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
 /**
  * @param {Object} filters
  */
-export const useGetProducts = ({ search, minPrice, maxPrice }) => {
+export const useGetProducts = ({ search, minPrice, maxPrice, priceDir }) => {
   const params = new URLSearchParams();
 
-  params.append("per_page", "12")
+  params.append("per_page", "12");
   if (search) params.append("search", search);
   if (minPrice) params.append("minPrice", minPrice);
   if (maxPrice) params.append("maxPrice", maxPrice);
+  if (priceDir) params.append("price_dir", priceDir); // ✅ اینجا اضافه شد
 
-  const queryString = params.toString();
-  const url = `/products${queryString ? `?${queryString}` : ""}`;
+  const url = `/products?${params.toString()}`;
 
   const { data, error, isLoading } = useSWR(url, fetcher);
 
-  return {
-    data,
-    error,
-    isLoading,
-  };
+  return { data, error, isLoading };
 };
+
 
 export const useGetProductDetail = (slug) => {
   const { data, error, isLoading } = useSWR(

@@ -2,33 +2,71 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
+  width: 100%;
+  max-width: 618px;
+  .tabContainer {
+    background-color: #ede5df;
+    padding: 4px;
+    border-radius: 42px;
+    margin: auto;
+    width: 328px;
+    border: none !important;
+    @media screen and (min-width: 1266px) {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      border: none !important;
+    }
+    .tab {
+      border-radius: 42px !important;
+      height: 32px;
+      width: 156px;
+      @media screen and (min-width: 1266px) {
+        width: 285px;
+      }
+    }
+  }
   .cartCard {
     display: flex;
     padding: 16px 0px;
-    width: 328px;
+    width: 100%;
     border: none;
     border-top: 1px solid #00000080 !important;
     border-radius: 0;
     &:first-child {
       border-top: none !important;
     }
-    .title{
-        font-size: 1.2rem !important;
+    .title {
+      font-size: 1.2rem !important;
     }
-    .wight{
-        font-size: 1.2rem !important;
+    .wight {
+      font-size: 1.2rem !important;
     }
-    .price{
-        font-size: 1.6rem !important;
-        margin-right: 64px;
+    .price {
+      font-size: 1.6rem !important;
+      margin-right: 64px;
     }
-    .quntitybutton{
-        background-color: #EDE5DF;
-        width: 32px;
-        height: 32px;
-        padding: 2px;
-        border: none;
+    .quntitybutton {
+      background-color: #ede5df;
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+      border: none;
+      border-radius: 12px;
+    }
+    .cardContentConteiner {
+      width: 100%;
+      .addButton {
+        width: 328px;
+        height: 40px;
         border-radius: 12px;
+        padding: 16px;
+        margin: auto;
+        background-color: #f4ede6 !important;
+        color: #715a41 !important;
+        margin-top: 16px;
+        border: none !important;
+      }
     }
   }
 }

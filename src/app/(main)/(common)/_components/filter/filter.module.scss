@@ -13,8 +13,17 @@
     border: 1px solid #999999 !important;
     color: #666666 !important;
     border-radius: 12px !important;
-          box-shadow: none !important;
-      outline: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: rgba(0, 0, 0, 0.02) !important;
+  }
+  .rangeInput {
+    border: 1px solid #999999 !important;
+    color: #666666 !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 8px;
     background-color: rgba(0, 0, 0, 0.02) !important;
   }
   .priceRange {
@@ -23,28 +32,29 @@
     padding: 8px;
     border-radius: 16px;
   }
-  .buttonContainer{
+  .buttonContainer {
     width: 100%;
-      .filterButton {
-    width: 162px;
-    height: 48px;
-    border-radius: 12px;
-    background-color: #715a41;
-    color: white;
-    border: none !important;
-    &:hover {
-      background-color: #715a41 !important;
-      color: white !important;
+    .filterButton {
+      width: 162px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: #715a41;
+      color: white;
       border: none !important;
+      cursor: pointer;
+      &:hover {
+        background-color: #715a41 !important;
+        color: white !important;
+        border: none !important;
+      }
     }
-  }
-  .clearFilterButton{
-    color: #715a41;
-    &:hover{
+    .clearFilterButton {
+      color: #715a41;
+      cursor: pointer;
+      &:hover {
         color: #715a41 !important;
         background-color: transparent !important;
+      }
     }
   }
-  }
-
 }

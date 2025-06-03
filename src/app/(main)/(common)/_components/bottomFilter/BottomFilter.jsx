@@ -5,7 +5,7 @@ import style from "./bottomFilter.module.scss";
 import SortIcon from "@/app/(main)/(common)/_components/icon/SortIcon";
 import FilterIcon from "@/app/(main)/(common)/_components/icon/FilterIcon";
 const { Text } = Typography;
-const BottomFilter = () => {
+const BottomFilter = ({setIsSortModalOpen}) => {
   return (
     <Flex
       gap={30}
@@ -13,7 +13,7 @@ const BottomFilter = () => {
       justify="center"
       align="center"
     >
-      <Button type="text" icon={<SortIcon />} className={style.sortContainer}>
+      <Button type="text" icon={<SortIcon />} onClick={setIsSortModalOpen} className={style.sortContainer}>
         مرتب سازی
       </Button>
       <Button

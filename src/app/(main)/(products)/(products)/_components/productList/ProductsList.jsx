@@ -20,6 +20,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import ArrowIcon from "@/app/(main)/(common)/_components/icon/ArrowIcon";
 import AddIcon from "@/app/(main)/(common)/_components/icon/AddIcon";
 import { useGetProducts } from "../../_hooks/api/productsApi";
+import SortBy from "./sortByModal/SortByModal"
 import Image from "next/image";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 import { useState } from "react";
@@ -31,14 +32,15 @@ const ProductsList = () => {
   const searchQuery = searchParams.get("search");
   const minPrice = searchParams.get("min_price");
   const maxPrice = searchParams.get("max_price");
-  const [minPriceInput, setMinPriceInput] = useState(minPrice || "");
-const [maxPriceInput, setMaxPriceInput] = useState(maxPrice || "");
+  const [priceDir, setPriceDir] = useState("");
+  const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const { isDesktop } = useResponsive();
-const { data, isLoading, error } = useGetProducts({
-  search: searchQuery,
-  minPrice: minPrice,
-  maxPrice: maxPrice,
-});
+  const { data, isLoading, error } = useGetProducts({
+    search: searchQuery,
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+    priceDir: priceDir
+  });
   const filters = [
     { title: "انگشتر" },
     { title: "گردنبند" },
@@ -69,13 +71,13 @@ const { data, isLoading, error } = useGetProducts({
                   type="text"
                   icon={<SortIcon width={20} height={20} />}
                   className={style.sortButton}
+                  onClick={() => setIsSortModalOpen(true)}
                 >
                   مرتب سازی
                 </Button>
                 <ArrowIcon width={24} height={24} />
               </div>
             </Flex>
-            
           ) : (
             <Radio.Group
               block
@@ -112,8 +114,10 @@ const { data, isLoading, error } = useGetProducts({
                   }
                 >
                   <Flex vertical>
-                    <Text className={style.cardTitle}
-                          onClick={() => router.push(`/products/${product.slug}`)} >
+                    <Text
+                      className={style.cardTitle}
+                      onClick={() => router.push(`/products/${product.slug}`)}
+                    >
                       {toPersianDigits(product.name)}
                     </Text>
                     <Flex gap={8} vertical>
@@ -170,7 +174,8 @@ const { data, isLoading, error } = useGetProducts({
           </div>
         </div>
       </div>
-      <BottomFilter />
+      <BottomFilter setIsSortModalOpen={() => setIsSortModalOpen(true)} />
+      {isSortModalOpen && <SortBy  onSelectSort={(value) => setPriceDir(value)} onClose={() => setIsSortModalOpen(false)} />}
     </>
   );
 };
