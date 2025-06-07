@@ -52,9 +52,26 @@
   position: absolute;
   bottom: 0;
   z-index: 1000000000;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 361px) {
     border-radius: 12px;
     margin: auto;
     bottom: auto;
   }
+}
+.otpInputsWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.otpInput {
+  width: 73px;
+  height: 73px;
+  font-size: 24px;
+  text-align: center;
+  border-radius:18.22px;
+  border: 1px solid #999999;
+  outline: none;
+  transition: border 0.2s ease;
 }

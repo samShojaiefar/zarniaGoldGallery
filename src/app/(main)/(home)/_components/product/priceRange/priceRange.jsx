@@ -12,10 +12,10 @@ import { useRouter } from "next/navigation";
    <Title level={4}>بازه قیمتی</Title>
    </div>
    <div  className={style.priceRangeContainer}>
-    <Button className={style.range}  onClick={() => router.push("/products?maxPrice=2000000")} >تا ۲ میلیون تومان</Button>
-    <Button className={style.range} onClick={() => router.push("/products?maxPrice=5000000")} >تا ۵ میلیون تومان</Button>
-    <Button className={style.range} onClick={() => router.push("/products?maxPrice=10000000")} >تا ۱۰ میلیون تومان</Button>
-    <Button className={style.range} onClick={() => router.push("/products?minPrice=10000000")} >بالای ۱۰ میلیون تومان</Button>
+    <Button className={style.range}  onClick={() => router.push("/products?max_price=2000000")} >تا ۲ میلیون تومان</Button>
+    <Button className={style.range} onClick={() => router.push("/products?max_price=5000000")} >تا ۵ میلیون تومان</Button>
+    <Button className={style.range} onClick={() => router.push("/products?max_price=10000000")} >تا ۱۰ میلیون تومان</Button>
+    <Button className={style.range} onClick={() => router.push("/products?min_price=10000000")} >بالای ۱۰ میلیون تومان</Button>
    </div>
    </>
   );

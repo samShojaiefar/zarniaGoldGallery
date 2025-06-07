@@ -1,0 +1,13 @@
+.radioGroupWrapper {
+  display: flex;
+  flex-direction: row !important;
+  background-color: red;
+  overflow-x: scroll !important
+  ;
+  width: 100%;
+  .filter {
+    display: contents;
+    border-radius: 42px !important;
+    border: 1px solid #715a4199 !important;
+  }
+}

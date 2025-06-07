@@ -148,13 +148,16 @@
       background-color: #008efa;
       padding: 8px 6px;
       border-radius: 8px;
+      white-space: noWrap;
       .installment {
         color: white;
         font-size: 12px;
+        white-space: noWrap;
       }
       .installmentTitle {
         color: white;
         font-size: 9.62px;
+        white-space: noWrap;
       }
     }
   }

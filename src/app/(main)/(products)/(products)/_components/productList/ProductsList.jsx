@@ -151,7 +151,7 @@ const ProductsList = () => {
                     </Flex>
                     <Flex gap={8} vertical>
                       <div className={style.InstallmentContainer}>
-                        <Flex align="center" justify="space-between">
+                        <Flex align="center" justify="space-between" gap={2}>
                           <Text className={style.installmentTitle}>
                             هر قسط:
                           </Text>

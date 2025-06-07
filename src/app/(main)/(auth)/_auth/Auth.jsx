@@ -1,31 +1,45 @@
 import { useState } from "react";
-import {
-  Divider,
-  Flex,
-  Form,
-  Input,
-  Typography,
-  Button,
-  message,
-} from "antd";
+import { Divider, Flex, Form, Input, Typography, Button, message } from "antd";
 import CloseIcon from "@/app/(main)/(common)/_components/icon/CloseIcon";
-import style from "./auth.module.scss";
 import LeftArrowIcon from "../../(common)/_components/icon/leftArrowIcon";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
-
+import style from "./auth.module.scss";
+import useSWRMutation from "swr/mutation";
+import { sendOtp } from "../_hooks/auth";
 const { Text } = Typography;
 
 function Auth({ onClose }) {
   const [step, setStep] = useState(1);
   const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
   const [form] = Form.useForm();
-
-  const handlePhoneSubmit = (values) => {
-    setPhone(values.phone);
-    setTimeout(() => {
+  const { trigger: triggerSendOtp, isMutating } = useSWRMutation(
+    "/auth/send-otp",
+    (_, { arg }) => sendOtp(arg)
+  );
+  const { trigger: triggerVerifyOtp, isMutating: isVerifying } = useSWRMutation(
+    "/auth/verify-otp",
+    (_, { arg }) => verifyOtp(arg)
+  );
+  const handlePhoneSubmit = async (values) => {
+    try {
+      await triggerSendOtp(values.phone);
+      setPhone(values.phone);
       message.success("کد تایید ارسال شد");
       setStep(2);
-    }, 500);
+    } catch (error) {
+      message.error("ارسال کد تایید با خطا مواجه شد");
+    }
+  };
+
+  const handleOtpSubmit = async () => {
+    try {
+      await triggerVerifyOtp({ phone, code: otp });
+      message.success("ورود موفق بود");
+      onClose?.();
+    } catch (error) {
+      message.error("کد وارد شده صحیح نیست");
+    }
   };
 
   return (
@@ -37,26 +51,29 @@ function Auth({ onClose }) {
         </Flex>
 
         <Divider />
+
         {step === 1 && (
-          <>
-            <Form
-              layout="vertical"
-              onFinish={handlePhoneSubmit}
-              form={form}
-              className={style.form}
-            >
-              <Flex vertical gap={116} style={{height:"380px"}}> 
+          <Form
+            layout="vertical"
+            onFinish={handlePhoneSubmit}
+            form={form}
+            className={style.form}
+          >
+            <Flex vertical gap={116} style={{ height: "380px" }}>
               <Flex vertical gap={16}>
                 <Text type="secondary" className={style.inputDescription}>
                   برای ورود یا عضویت، شماره موبایل خود را وارد کنید.
                 </Text>
-                <Form.Item name="phone" maxLength={1}>
+                <Form.Item
+                  name="phone"
+                  rules={[{ required: true, message: "شماره را وارد کنید" }]}
+                >
                   <div className={style.inputContainer}>
                     <Text className={style.numberLabel} type="secondary">
                       شماره همراه
                     </Text>
                     <Input
-                      value={toPersianDigits(phone)}
+                      value={phone}
                       onChange={(e) => {
                         const raw = e.target.value
                           .replace(/[^۰-۹0-9]/g, "")
@@ -75,25 +92,33 @@ function Auth({ onClose }) {
               </Flex>
               <Form.Item>
                 <Button
-                  type="button"
+                  type="primary"
                   className={style.button}
                   htmlType="submit"
                   block
+                  loading={isMutating}
                 >
                   ادامه
                 </Button>
               </Form.Item>
-              </Flex>
-            </Form>
-          </>
+            </Flex>
+          </Form>
         )}
 
         {step === 2 && (
-          <>
-            <Form layout="vertical" className={style.form}>
-              <Flex vertical gap={48} style={{height:"380px"}}>
+          <Form
+            layout="vertical"
+            className={style.form}
+            onFinish={handleOtpSubmit}
+          >
+            <Flex vertical gap={48} style={{ height: "380px" }}>
               <Flex vertical gap={16}>
-                <Flex onClick={() => setStep(1)}>
+                <Flex
+                  onClick={() => setStep(1)}
+                  style={{ cursor: "pointer" }}
+                  align="center"
+                  gap={8}
+                >
                   <LeftArrowIcon
                     color="black"
                     className={style.arrow}
@@ -103,23 +128,71 @@ function Auth({ onClose }) {
                   <Text className={style.title}>اصلاح شماره همراه</Text>
                 </Flex>
                 <Text type="secondary" className={style.inputDescription}>
-                  کد تایید ارسال شده به شماره {phone} را وارد کنید.
+                  کد تایید ارسال شده به شماره {toPersianDigits(phone)} را وارد
+                  کنید.
                 </Text>
-                <Form.Item name="otp">
-                  <Flex gap={8}>
-                    <div className={style.otp}></div>
-                    <div className={style.otp}></div>
-                    <div className={style.otp}></div>
-                    <div className={style.otp}></div>
-                  </Flex>
-                </Form.Item>
+
+                <div className={style.otpInputsWrapper}>
+                  {[0, 1, 2, 3].map((i) => (
+                    <input
+                      key={i}
+                      type="text"
+                      inputMode="numeric"
+                      maxLength={1}
+                      className={style.otpInput}
+                      value={otp[i] || ""}
+                      onChange={(e) => {
+                        const val = e.target.value.replace(/[^0-9]/g, "");
+                        if (val) {
+                          const newOtp = otp.split("");
+                          newOtp[i] = val;
+                          const finalOtp = newOtp.join("").slice(0, 4);
+                          setOtp(finalOtp);
+                          const nextInput = document.getElementById(
+                            `otp-input-${i + 1}`
+                          );
+                          if (nextInput) nextInput.focus();
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Backspace") {
+                          e.preventDefault();
+                          const newOtp = otp.split("");
+                          if (otp[i]) {
+                            newOtp[i] = "";
+                            setOtp(newOtp.join(""));
+                          } else if (i > 0) {
+                            const prevInput = document.getElementById(
+                              `otp-input-${i - 1}`
+                            );
+                            if (prevInput) {
+                              prevInput.focus();
+                              const newerOtp = otp.split("");
+                              newerOtp[i - 1] = "";
+                              setOtp(newerOtp.join(""));
+                            }
+                          }
+                        }
+                      }}
+                      id={`otp-input-${i}`}
+                    />
+                  ))}
+                </div>
               </Flex>
-              <Button className={style.button} type="link" block>
-                ادامه
-              </Button>
-              </Flex>
-            </Form>
-          </>
+
+              <Form.Item>
+                <Button
+                  type="primary"
+                  className={style.button}
+                  htmlType="submit"
+                  block
+                  loading={isVerifying}
+                >
+                  ادامه
+                </Button>
+              </Form.Item>
+            </Flex>
+          </Form>
         )}
       </div>
     </div>
