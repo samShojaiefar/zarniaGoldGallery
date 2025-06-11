@@ -80,6 +80,7 @@ export default function Nav() {
             <>
               <Button
                 type="text"
+                iconPosition="end"
                 icon={<CartIcon width={24} height={24} color="black" />}
                 onClick={() =>
                   user ? router.push("/cart") : setShowAuthModal(true)
@@ -91,6 +92,7 @@ export default function Nav() {
               {user ? (
                 <Button
                   type="text"
+                  iconPosition="end"
                   icon={<ProfileIcon width={24} height={24} color="black" />}
                   onClick={() => router.push("/profile")}
                 >
@@ -99,6 +101,7 @@ export default function Nav() {
               ) : (
                 <Button
                   type="text"
+                  iconPosition="end"
                   icon={<ProfileIcon width={24} height={24} color="black" />}
                   onClick={() => setShowAuthModal(true)}
                 >
@@ -117,11 +120,7 @@ export default function Nav() {
                   onChange={handleSearchChange}
                   onPressEnter={() => {
                     if (searchQuery.trim().length > 0) {
-                      router.push(
-                        `/products?search=${
-                          searchQuery.trim()
-                        }`
-                      );
+                      router.push(`/products?search=${searchQuery.trim()}`);
                       setSearchVisible(false);
                       setSearchQuery("");
                       setSearchResults([]);
@@ -130,40 +129,39 @@ export default function Nav() {
                   className={style.searchInput}
                 />
 
-                {Array.isArray(searchResults) &&
-                  searchResults.length > 0 && (
-                    <div className={style.searchResults}>
-                      {searchResults.map((product) => (
-                        <div
-                          key={product.id}
-                          className={style.searchResultItem}
-                          onClick={() => {
-                            router.push(`/product/${product.slug}`);
-                            setSearchVisible(false);
-                            setSearchQuery("");
-                            setSearchResults([]);
-                          }}
-                        >
-                          <Flex align="center" gap={16}>
-                            <Image
-                              className={style.image}
-                              src={product.image}
-                              width={100}
-                              height={100}
-                              alt={product.name}
-                            />
-                            <Flex vertical>
-                              <Text>{product.name}</Text>
-                              <Flex gap={5}>
-                                <Text>{product.price}</Text>
-                                <Text>تومان</Text>
-                              </Flex>
+                {Array.isArray(searchResults) && searchResults.length > 0 && (
+                  <div className={style.searchResults}>
+                    {searchResults.map((product) => (
+                      <div
+                        key={product.id}
+                        className={style.searchResultItem}
+                        onClick={() => {
+                          router.push(`/product/${product.slug}`);
+                          setSearchVisible(false);
+                          setSearchQuery("");
+                          setSearchResults([]);
+                        }}
+                      >
+                        <Flex align="center" gap={16}>
+                          <Image
+                            className={style.image}
+                            src={product.image}
+                            width={100}
+                            height={100}
+                            alt={product.name}
+                          />
+                          <Flex vertical>
+                            <Text>{product.name}</Text>
+                            <Flex gap={5}>
+                              <Text>{product.price}</Text>
+                              <Text>تومان</Text>
                             </Flex>
                           </Flex>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                        </Flex>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
             <Button

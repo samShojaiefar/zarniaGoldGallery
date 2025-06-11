@@ -48,6 +48,9 @@
     box-shadow: none !important;
     outline: none !important;
     width: 200px;
+    @media screen and (min-width: 1440px) {
+    width: 700px;
+  }
   }
 }
 .searchBox {
@@ -61,7 +64,10 @@
       display: none;
     }
     scrollbar-width: none;
-    white-space: nowrap;
+    @media screen and (min-width: 1440px) {
+    position: relative;
+    left: 0;
+  }
 }
 
 .searchResults {
@@ -74,7 +80,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 8px;
   border-radius: 12px;
-      white-space: nowrap;
 
 }
 
@@ -82,7 +87,6 @@
   padding: 12px;
   cursor: pointer;
   transition: background 0.2s;
-      white-space: nowrap;
 
 }
 
