@@ -1,20 +1,38 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { Flex, Typography, Button } from "antd";
+import { useEffect, useState } from "react";
+import { Button, Flex, Typography } from "antd";
+import useSWR, { mutate } from "swr";
+
+import Auth from "@/app/(main)/(auth)/_auth/Auth";
+import axiosInstance from "@/lib/services/axiosInstance";
+import style from "./ButtomNav.module.scss";
+
 import HomeIcon from "../icon/HomeIcon";
 import StoreIcon from "../icon/StoreIcon";
 import CartIcon from "../icon/CartIcon";
 import ProfileIcon from "../icon/profileIcon";
-import style from "./ButtomNav.module.scss";
-import { useState } from "react";
-import Auth from "@/app/(main)/(auth)/_auth/Auth"
+
 const { Text } = Typography;
+
+const fetcher = (url) => axiosInstance.get(url).then((res) => res.data);
 
 const BottomNav = () => {
   const router = useRouter();
   const pathname = usePathname();
+
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const accessToken = localStorage.getItem("access_token");
+      setToken(accessToken);
+    }
+  }, []);
+
+  const { data: user } = useSWR(token ? "/user" : null, fetcher);
 
   const getActiveTab = () => {
     if (pathname === "/") return "home";
@@ -29,6 +47,7 @@ const BottomNav = () => {
   return (
     <Flex className={style.buttomNavContaner} align="center" justify="center">
       <Flex justify="space-between" className={style.tabContainer}>
+        {/* خانه */}
         <Button
           type="text"
           className={style.tab}
@@ -43,14 +62,13 @@ const BottomNav = () => {
         >
           <Text
             className={style.iconTitle}
-            style={{
-              color: activeTab === "home" ? "black" : "#B3B3B3",
-            }}
+            style={{ color: activeTab === "home" ? "black" : "#B3B3B3" }}
           >
             خانه
           </Text>
         </Button>
 
+        {/* فروشگاه */}
         <Button
           type="text"
           className={style.tab}
@@ -65,14 +83,13 @@ const BottomNav = () => {
         >
           <Text
             className={style.iconTitle}
-            style={{
-              color: activeTab === "store" ? "black" : "#B3B3B3",
-            }}
+            style={{ color: activeTab === "store" ? "black" : "#B3B3B3" }}
           >
             فروشگاه
           </Text>
         </Button>
 
+        {/* سبد خرید */}
         <Button
           type="text"
           className={style.tab}
@@ -84,24 +101,18 @@ const BottomNav = () => {
             />
           }
           onClick={() => {
-            // if (isAuthenticated) {
-            //   router.push("/cart");
-            // } else {
-            //   setShowAuthModal(true); // نمایش مودال ورود
-            // }
-            setShowAuthModal(true);
+            user ? router.push("/cart") : setShowAuthModal(true);
           }}
         >
           <Text
             className={style.iconTitle}
-            style={{
-              color: activeTab === "cart" ? "black" : "#B3B3B3",
-            }}
+            style={{ color: activeTab === "cart" ? "black" : "#B3B3B3" }}
           >
             سبد خرید
           </Text>
         </Button>
 
+        {/* پروفایل */}
         <Button
           type="text"
           className={style.tab}
@@ -113,18 +124,18 @@ const BottomNav = () => {
             />
           }
           onClick={() => {
-              setShowAuthModal(true)}}
+            user ? router.push("/profile") : setShowAuthModal(true);
+          }}
         >
           <Text
             className={style.iconTitle}
-            style={{
-              color: activeTab === "profile" ? "black" : "#B3B3B3",
-            }}
+            style={{ color: activeTab === "profile" ? "black" : "#B3B3B3" }}
           >
-            حساب کاربر
+            {user ? "پروفایل" : "ورود"}
           </Text>
         </Button>
       </Flex>
+
       {showAuthModal && <Auth onClose={() => setShowAuthModal(false)} />}
     </Flex>
   );

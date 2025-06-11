@@ -63,6 +63,7 @@ function RelatedProducts() {
     },
   ];
   const router = useRouter();
+  
   return (
     <>
       <ConfigProvider

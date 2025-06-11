@@ -63,6 +63,7 @@
   justify-content: center;
   gap: 12px;
   margin-top: 12px;
+  direction: ltr;
 }
 
 .otpInput {
@@ -74,4 +75,7 @@
   border: 1px solid #999999;
   outline: none;
   transition: border 0.2s ease;
+}
+.resendWrapper{
+  margin: auto;
 }

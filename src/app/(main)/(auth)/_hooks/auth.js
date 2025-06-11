@@ -5,10 +5,11 @@ export const sendOtp = async (phone) => {
   return res.data;
 };
 
-export const verifyOtp = async ({ phone, code }) => {
+export const verifyOtp = async ({ phone, otp }) => {
   const res = await axiosInstance.post("/auth/verify-otp", {
     phone,
-    code,
+    otp,
   });
   return res.data;
 };
+

@@ -32,7 +32,7 @@ function PurchaseInfo({ product }) {
             <Flex align="center" gap={4}>
               <Text className={style.price}>
                 {toPersianDigits("2,350,000")}
-              </Text>
+              </Text> 
               <Text className={style.secodaryText} type="secondary">
                 تومان
               </Text>

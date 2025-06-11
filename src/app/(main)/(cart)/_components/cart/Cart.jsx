@@ -1,9 +1,18 @@
 "use client";
 
-import { Button, Typography, Flex, Radio, ConfigProvider } from "antd";
+import {
+  Button,
+  Typography,
+  Flex,
+  Radio,
+  ConfigProvider,
+  Spin,
+  Empty,
+  message,
+} from "antd";
 import style from "./cart.module.scss";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MiunsIcon from "@/app/(main)/(common)/_components/icon/MiunsIcon";
 import AddIcon from "@/app/(main)/(common)/_components/icon/AddIcon";
 import TrashIcon from "@/app/(main)/(common)/_components/icon/TrashIcon";
@@ -11,41 +20,45 @@ import CartIcon from "@/app/(main)/(common)/_components/icon/CartIcon";
 import FavoriteIcon from "@/app/(main)/(common)/_components/icon/favorite";
 import BottomPurchaseInfo from "../bottomPurchaseInfo/BottomPurchaseInfo";
 import PurchaseInfo from "../PurchaseInfo/PurchaseInfo";
+import { deleteCartItem, getCartItems } from "@/lib/api/cartApi";
+import { toPersianDigits } from "@/lib/utils/toPersionNumber";
+
 const { Text } = Typography;
-
-const cartItems = [
-  {
-    id: 1,
-    price: "۵,۱۹۱,۶۹۰",
-    image: "/image/Frame 238010.png",
-    wight: "۲.۰۱ گرم",
-  },
-  {
-    id: 2,
-    price: "۵,۱۹۱,۶۹۰",
-    image: "/image/Frame 238010.png",
-    wight: "۲.۰۱ گرم",
-  },
-];
-
-const favoriteItems = [
-  {
-    id: 3,
-    price: "۳,۵۰۰,۰۰۰",
-    image: "/image/Frame 238010.png",
-    wight: "۱.۵۰ گرم",
-  },
-  {
-    id: 4,
-    price: "۳,۵۰۰,۰۰۰",
-    image: "/image/Frame 238010.png",
-    wight: "۱.۵۰ گرم",
-  },
-];
 
 const Cart = () => {
   const [selectedTab, setSelectedTab] = useState("a");
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(false);
 
+  const favoriteItems = []; // در صورت نیاز API علاقه‌مندی‌ها اضافه شود
+
+  const fetchCart = async () => {
+    try {
+      setLoading(true);
+      const data = await getCartItems();
+      setCartItems(data.items || []);
+    } catch (error) {
+      console.error("خطا در دریافت سبد خرید", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedTab === "a") fetchCart();
+  }, [selectedTab]);
+  const handleDeleteItem = async (productId) => {
+    try {
+      await deleteCartItem(productId);
+      setCartItems((prev) =>
+        prev.filter((item) => item.product_id !== productId)
+      );
+      message.success("محصول با موفقیت حذف شد");
+    } catch (error) {
+      console.error("خطا در حذف محصول", error);
+      message.error("خطا در حذف محصول");
+    }
+  };
   const renderItems = selectedTab === "a" ? cartItems : favoriteItems;
 
   return (
@@ -96,7 +109,7 @@ const Cart = () => {
                   <span
                     style={{ color: selectedTab === "b" ? "white" : "#715A41" }}
                   >
-                    علاقه‌ مندی‌ها
+                    علاقه‌مندی‌ها
                   </span>
                 </Flex>
               </Radio.Button>
@@ -104,53 +117,56 @@ const Cart = () => {
           </Flex>
 
           <div>
-            {renderItems.map((item) => (
-              <div key={item.id} className={style.cartCard}>
-                <Flex vertical className={style.cardContentConteiner}>
-                  <Flex align="center" justify="space-between">
-                    <Flex align="center">
-                      <Image src={item.image} width={64} height={64} alt="" />
-                      <Flex gap={8} vertical>
-                        <Text className={style.title} type="secondary">
-                          انگشتر طرح چشم
-                        </Text>
-                        <Text className={style.wight} type="secondary">
-                          {item.wight}
-                        </Text>
+            {loading ? (
+              <Spin style={{ marginTop: "2rem" }} />
+            ) : renderItems.length === 0 ? (
+              <Empty description="موردی یافت نشد" />
+            ) : (
+              renderItems.map((item, index) => (
+                <div key={index} className={style.cartCard}>
+                  <Flex vertical className={style.cardContentConteiner}>
+                    <Flex align="center" justify="space-between">
+                      <Flex align="center">
+                        <Image
+                          src={item.image}
+                          width={64}
+                          height={64}
+                          alt={item.product}
+                        />
+                        <Flex gap={8} vertical>
+                          <Text className={style.title} type="secondary">
+                            {item.product}
+                          </Text>
+                          <Text className={style.wight} type="secondary">
+                            {toPersianDigits(item.count)} عدد
+                          </Text>
+                        </Flex>
                       </Flex>
+                        <TrashIcon />
                     </Flex>
-                    <TrashIcon />
-                  </Flex>
-                  <Flex justify="space-between">
-                    <Text className={style.price}>{item.price} تومان</Text>
-                    {selectedTab === "a" && (
+                    <Flex justify="space-between">
+                      <Text className={style.price}>
+                        {toPersianDigits(item.total_price_formatted)} تومان
+                      </Text>
                       <Flex align="center" gap={15}>
                         <Button className={style.quntitybutton}>
                           <AddIcon width={34} height={34} border={false} />
                         </Button>
-                        <Text>۱</Text>
+                        <Text>{toPersianDigits(item.count)}</Text>
                         <Button className={style.quntitybutton}>
                           <MiunsIcon />
                         </Button>
                       </Flex>
-                    )}
+                    </Flex>
                   </Flex>
-                  {selectedTab === "b" && (
-                    <Button className={style.addButton}>
-                      <Flex>
-                        <AddIcon border />
-                        افزودن به سبد
-                      </Flex>
-                    </Button>
-                  )}
-                </Flex>
-              </div>
-            ))}
+                </div>
+              ))
+            )}
           </div>
         </div>
         <PurchaseInfo />
+        ``
       </Flex>
-
       {selectedTab === "a" && <BottomPurchaseInfo />}
     </ConfigProvider>
   );

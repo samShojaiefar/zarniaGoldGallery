@@ -1,13 +1,153 @@
-.radioGroupWrapper {
-  display: flex;
-  flex-direction: row !important;
-  background-color: red;
-  overflow-x: scroll !important
-  ;
-  width: 100%;
-  .filter {
-    display: contents;
-    border-radius: 42px !important;
-    border: 1px solid #715a4199 !important;
+.profileContainer {
+  @media screen and (min-width: 1266px) {
+    width: 1064px;
+    margin: auto;
   }
+  .radioGroupWrapper {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    width: 100%;
+    padding-right: 16px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    @media screen and (min-width: 1266px) {
+      display: none;
+    }
+    .radioItem {
+      position: relative;
+      cursor: pointer;
+      border-radius: 42px;
+      padding: 4px 16px;
+      background-color: #fff;
+      border: 1px solid #c7a782;
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+      white-space: nowrap;
+      input {
+        display: none;
+      }
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      &.active {
+        background-color: #c7a78233;
+        color: #715a41;
+      }
+      .TabTitle {
+        color: #715a41 !important;
+      }
+    }
+  }
+
+  .sectionList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 32px;
+    padding: 16px;
+    width: 100%;
+    .ListItem {
+      padding: 8px 0;
+      cursor: pointer;
+    }
+    @media screen and (min-width: 1266px) {
+      width: 100%;
+      margin-right: 16px;
+    }
+  }
+  .titleContainer {
+    padding-right: 16px;
+    margin-top: 32px;
+  }
+  .tabContainer {
+    display: none;
+    @media screen and (min-width: 1266px) {
+      width: 200px;
+      height: 100%;
+      background-color: #fff;
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .radioItem {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: transparent;
+      transition: all 0.3s ease;
+
+      input {
+        display: none;
+      }
+
+      &:hover {
+        background-color: #f9f9f9;
+      }
+
+      &.active {
+        background-color: #f0e6d8;
+        border-radius: 42px;
+        width: 168px;
+      }
+
+      .tabTitle {
+        color: #715a41;
+        margin-right: 8px;
+      }
+    }
+
+    .logoutButton {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 12px;
+      white-space: nowrap;
+      margin-top: 32px;
+      .logoutText {
+        color: #e53935;
+      }
+      &:hover {
+        background-color: #fce8e6;
+        border-radius: 6px;
+      }
+    }
+    
+  }
+  .giftCard {
+      height: 120px;
+      padding: 16px;
+      border-radius: 12px;
+      background-color: #EDE5DF;
+      max-width: 840px;
+      @media screen and (min-width: 840px) {
+      margin: auto;
+      width: 840px;
+    }
+      .secondaryText{
+        font-size: 12px;
+      }
+      .copyButton{
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        padding: 8px;
+        margin: auto 0px;
+        background-color: #715a41 !important;
+      }
+    }
 }

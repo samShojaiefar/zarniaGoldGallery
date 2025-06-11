@@ -45,9 +45,7 @@ const Detail = ({product}) => {
       </div>
       <div className={style.descraptionContainer}>
         <Text type="secondary" className={style.descraiptionTitle}>
-          دسته:{product.categories.map((category)=>(
-            category.title+" ,"
-        ))}
+          دسته:{product.categories.map((category)=> category.title).join(" ، ")}
         </Text>
         <Flex vertical>
           <Text type="secondary">توضیحات:</Text>

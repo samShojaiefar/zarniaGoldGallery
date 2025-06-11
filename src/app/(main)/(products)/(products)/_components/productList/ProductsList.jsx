@@ -24,6 +24,8 @@ import SortBy from "./sortByModal/SortByModal"
 import Image from "next/image";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 import { useState } from "react";
+import { addToCart } from "@/lib/api/cartApi"
+import toast, { Toaster } from "react-hot-toast";
 const { Text } = Typography;
 
 const ProductsList = () => {
@@ -49,10 +51,20 @@ const ProductsList = () => {
     { title: "نیم‌ست" },
     { title: "زنجیر" },
   ];
+const handleAddToCart = async (productSlug) => {
+  try {
+    await addToCart(productSlug);
+    toast.sucsses("محصول به سبد خرید اضافه شد");
+  } catch (err) {
+    console.error(err);
+    toast.error("خطا در افزودن به سبد خرید");
+  }
+};
 
   return (
     <>
       <div className={style.productContainer}>
+        <Toaster/>
         <Filter />
 
         <div className={style.mainContent}>
@@ -163,7 +175,7 @@ const ProductsList = () => {
                           </Text>
                         </Flex>
                       </div>
-                      <Button className={style.addButton}>
+                      <Button onClick={() => handleAddToCart(product.slug)} className={style.addButton}>
                         <AddIcon border />
                         افزودن به سبد
                       </Button>
@@ -178,6 +190,5 @@ const ProductsList = () => {
       {isSortModalOpen && <SortBy  onSelectSort={(value) => setPriceDir(value)} onClose={() => setIsSortModalOpen(false)} />}
     </>
   );
-};
-
+}
 export default ProductsList;

@@ -12,12 +12,12 @@ import RelatedProducts from "./relatedProducts/RelatedProducts";
 import BottomPurchaseInfo from "./bottomPurchaseInfo/BottomPurchaseInfo";
 import { useState } from "react";
 import { useGetProductDetail } from "../../_hooks/api/productsApi";
-
+import { addToFavorite } from "@/lib/api/cartApi";
 
 const ProductDetail = () => {
   const params = useParams();
   const slug = params?.slug;
-const { data, isLoading, error } = useGetProductDetail(slug);
+  const { data, isLoading, error } = useGetProductDetail(slug);
   console.log("data: ", data, "error:", error, "loading:", isLoading);
   if (isLoading) return <Spin tip="در حال بارگذاری..." />;
   if (error) return <div>خطا در دریافت اطلاعات محصول</div>;
@@ -62,7 +62,7 @@ const { data, isLoading, error } = useGetProductDetail(slug);
         <Detail product={data.data} />
       </div>
 
-      <RelatedProducts/>
+      <RelatedProducts />
       <BottomPurchaseInfo product={data.data} />
     </>
   );
