@@ -246,19 +246,22 @@
     font-size: 13px;
     color: #333;
   }
-}
-
-.editAddressBtn {
+  .editAddressBtn {
   background-color: #715a41 !important;
   color: #fff !important;
   border: none;
-  width: 80px;
-  height: 32px;
-  border-radius: 8px;
+  width: 100px;
+  height: 48px;
+  border-radius: 12px;
+  padding: 8px;
   align-self: flex-start;
   font-size: 13px;
   margin-top: 8px;
+  margin: auto;
 }
+}
+
+
 .address{
   text-align: left;
   width: 245px;

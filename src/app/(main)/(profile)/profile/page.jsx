@@ -197,9 +197,9 @@ const AddressCard = ({ fullName, phone, address }) => (
       <UserInfoSection label="شماره همراه" />
       <UserInfoSection label="ایمیل" />
           <div className={style.addressSection}>
-      <Text className={style.addNewAddress}>
+      <Title level={5} className={style.addNewAddress}>
         <AddIcon border/> افزودن آدرس جدید
-      </Text>
+      </Title>
       <div className={style.addressCard}>
      <div className={style.addressCard}>
       <Flex justify="space-between">
@@ -214,6 +214,7 @@ const AddressCard = ({ fullName, phone, address }) => (
         <Text type="secondary">آدرس</Text>
         <Text className={style.address}>تهران، تهران، بلوار صبا، خ موسیوند، پلاک ۲۳،‌واحد ۸</Text>
       </Flex>
+      <Button className={style.editAddressBtn}>تغییر</Button>
       </div>
       </div>
     </div>
