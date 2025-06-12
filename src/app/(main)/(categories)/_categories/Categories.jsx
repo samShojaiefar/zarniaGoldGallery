@@ -40,7 +40,7 @@ function Categories({ onClose }) {
                         <Button onClick={()=>{
                             router.push('/products')
                             onClose();
-                        }} style={{width:"100%",borderRadius:"12px",border:"1px solid rgba(113, 90, 65, 0.40)",}}>{category.title}</Button>
+                        }} className={style.button} style={{width:"100%",borderRadius:"12px",border:"1px solid rgba(113, 90, 65, 0.40)",}}>{category.title}</Button>
                     </Col>
                 ))}
             </Row>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Divider, Flex, Form, Input, Typography, Button, message } from "antd";
+import { Divider, Flex, Form, Input, Typography, Button } from "antd";
 import CloseIcon from "@/app/(main)/(common)/_components/icon/CloseIcon";
 import LeftArrowIcon from "../../(common)/_components/icon/leftArrowIcon";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
@@ -45,22 +45,12 @@ function Auth({ onClose }) {
     try {
       await triggerSendOtp(values.phone);
       setPhone(values.phone);
-      toast.success("کد تایید ارسال شد",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
+      toast.success("کد تایید ارسال شد", { style: { fontSize: "1.5rem" } });
       setStep(2);
       setTimer(120);
       setResendEnabled(false);
-    } catch (error) {
-      toast.error("ارسال کد تایید با خطا مواجه شد",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
+    } catch {
+      toast.error("ارسال کد تایید با خطا مواجه شد", { style: { fontSize: "1.5rem" } });
     }
   };
 
@@ -69,49 +59,28 @@ function Auth({ onClose }) {
       const data = await triggerVerifyOtp({ phone, otp });
       const token = data.token;
       localStorage.setItem("access_token", token);
-      toast.success("ورود موفق بود",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
+      toast.success("ورود موفق بود", { style: { fontSize: "1.5rem" } });
       onClose?.();
-    } catch (error) {
-      toast.error("کد وارد شده صحیح نیست",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
+      window.location.reload();
+    } catch {
+      toast.error("کد وارد شده صحیح نیست", { style: { fontSize: "1.5rem" } });
     }
-    window.location.reload();
   };
 
   const handleResendOtp = async () => {
     try {
       await triggerSendOtp(phone);
-      toast.success("کد تایید مجدد ارسال شد",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
+      toast.success("کد تایید مجدد ارسال شد", { style: { fontSize: "1.5rem" } });
       setTimer(120);
       setResendEnabled(false);
-    } catch (error) {
-      toast.error("ارسال مجدد کد با خطا مواجه شد",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        }
-      );
+    } catch {
+      toast.error("ارسال مجدد کد با خطا مواجه شد", { style: { fontSize: "1.5rem" } });
     }
   };
 
   return (
     <div className={style.overlay}>
-      <Toaster/>
+      <Toaster />
       <div className={style.modalContent}>
         <Flex justify="space-between" align="center">
           <Text className={style.title}>ورود / ثبت‌نام</Text>
@@ -121,12 +90,7 @@ function Auth({ onClose }) {
         <Divider />
 
         {step === 1 && (
-          <Form
-            layout="vertical"
-            onFinish={handlePhoneSubmit}
-            form={form}
-            className={style.form}
-          >
+          <Form layout="vertical" onFinish={handlePhoneSubmit} form={form} className={style.form}>
             <Flex vertical gap={116} style={{ height: "380px" }}>
               <Flex vertical gap={16}>
                 <Text type="secondary" className={style.inputDescription}>
@@ -145,9 +109,7 @@ function Auth({ onClose }) {
                       onChange={(e) => {
                         const raw = e.target.value
                           .replace(/[^۰-۹0-9]/g, "")
-                          .replace(/[٠-٩]/g, (d) =>
-                            String("٠١٢٣٤٥٦٧٨٩".indexOf(d))
-                          );
+                          .replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
                         setPhone(raw.slice(0, 11));
                         form.setFieldValue("phone", raw.slice(0, 11));
                       }}
@@ -174,11 +136,7 @@ function Auth({ onClose }) {
         )}
 
         {step === 2 && (
-          <Form
-            layout="vertical"
-            className={style.form}
-            onFinish={handleOtpSubmit}
-          >
+          <Form layout="vertical" className={style.form} onFinish={handleOtpSubmit}>
             <Flex vertical gap={20} style={{ height: "380px" }}>
               <Flex vertical gap={16}>
                 <Flex
@@ -187,18 +145,12 @@ function Auth({ onClose }) {
                   align="center"
                   gap={8}
                 >
-                  <LeftArrowIcon
-                    color="black"
-                    className={style.arrow}
-                    width={24}
-                    height={24}
-                  />
+                  <LeftArrowIcon color="black" className={style.arrow} width={24} height={24} />
                   <Text className={style.title}>اصلاح شماره همراه</Text>
                 </Flex>
 
                 <Text type="secondary" className={style.inputDescription}>
-                  کد تایید ارسال شده به شماره {toPersianDigits(phone)} را وارد
-                  کنید.
+                  کد تایید ارسال شده به شماره {toPersianDigits(phone)} را وارد کنید.
                 </Text>
 
                 <div className={style.otpInputsWrapper}>
@@ -216,11 +168,14 @@ function Auth({ onClose }) {
                         newOtp[i] = val;
                         const finalOtp = newOtp.join("").slice(0, 4);
                         setOtp(finalOtp);
-                        if (val && i < 3) {
-                          const nextInput = document.getElementById(
-                            `otp-input-${i + 1}`
-                          );
-                          nextInput?.focus();
+
+                        if (val) {
+                          if (i < 3) {
+                            const nextInput = document.getElementById(`otp-input-${i + 1}`);
+                            nextInput?.focus();
+                          } else if (i === 3 && finalOtp.length === 4) {
+                            setTimeout(() => handleOtpSubmit(), 200);
+                          }
                         }
                       }}
                       onKeyDown={(e) => {
@@ -230,9 +185,7 @@ function Auth({ onClose }) {
                             newOtp[i] = "";
                             setOtp(newOtp.join(""));
                           } else if (i > 0) {
-                            const prevInput = document.getElementById(
-                              `otp-input-${i - 1}`
-                            );
+                            const prevInput = document.getElementById(`otp-input-${i - 1}`);
                             prevInput?.focus();
                             newOtp[i - 1] = "";
                             setOtp(newOtp.join(""));
@@ -246,18 +199,13 @@ function Auth({ onClose }) {
 
                 <div className={style.resendWrapper}>
                   {resendEnabled ? (
-                    <Button
-                      type="link"
-                      onClick={handleResendOtp}
-                      style={{ padding: 0 }}
-                    >
+                    <Button type="link" onClick={handleResendOtp} style={{ padding: 0 }}>
                       ارسال مجدد کد
                     </Button>
                   ) : (
                     <Text type="secondary">
-                      ارسال مجدد کد تا {toPersianDigits(Math.floor(timer / 60))}
-                      :{toPersianDigits(String(timer % 60).padStart(2, "0"))}{" "}
-                      دقیقه دیگر
+                      ارسال مجدد کد تا {toPersianDigits(Math.floor(timer / 60))}:
+                      {toPersianDigits(String(timer % 60).padStart(2, "0"))} دقیقه دیگر
                     </Text>
                   )}
                 </div>

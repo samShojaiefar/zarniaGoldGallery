@@ -1,8 +1,6 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import useSWR from "swr";
-import axiosInstance from "@/lib/services/axiosInstance";
 import { Breadcrumb, Spin } from "antd";
 import Image from "next/image";
 import style from "./productDetail.module.scss";
@@ -12,13 +10,17 @@ import RelatedProducts from "./relatedProducts/RelatedProducts";
 import BottomPurchaseInfo from "./bottomPurchaseInfo/BottomPurchaseInfo";
 import { useState } from "react";
 import { useGetProductDetail } from "../../_hooks/api/productsApi";
-import { addToFavorite } from "@/lib/api/cartApi";
+import Auth from "@/app/(main)/(auth)/_auth/Auth";
 
 const ProductDetail = () => {
   const params = useParams();
   const slug = params?.slug;
   const { data, isLoading, error } = useGetProductDetail(slug);
-  console.log("data: ", data, "error:", error, "loading:", isLoading);
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const openLoginModal = () => setIsLoginModalOpen(true);
+  const closeLoginModal = () => setIsLoginModalOpen(false);
+
   if (isLoading) return <Spin tip="در حال بارگذاری..." />;
   if (error) return <div>خطا در دریافت اطلاعات محصول</div>;
   if (!data) return null;
@@ -59,11 +61,15 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <Detail product={data.data} />
+        <Detail product={data.data} openLoginModal={openLoginModal} />
       </div>
 
       <RelatedProducts />
       <BottomPurchaseInfo product={data.data} />
+
+      {isLoginModalOpen && (
+        <Auth open={isLoginModalOpen} onClose={closeLoginModal} />
+      )}
     </>
   );
 };

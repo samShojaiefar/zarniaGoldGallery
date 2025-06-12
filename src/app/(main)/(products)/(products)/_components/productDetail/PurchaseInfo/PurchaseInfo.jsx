@@ -1,39 +1,50 @@
 "use client";
+
 import { Button, Flex, Typography } from "antd";
 import style from "./PurchaseInfo.module.scss";
 import Image from "next/image";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
-import { addToCart, addToFavorite } from "@/lib/api/cartApi";
+import { addToCart } from "@/lib/api/cartApi";
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
 
 const { Text } = Typography;
 
-function PurchaseInfo({ product }) {
-const handleAddToCart = async (productSlug) => {
-  try {
-    await addToCart(productSlug);
-    toast.success("محصول به سبد خرید اضافه شد",
-        {
-          style:{
-        fontSize:"1.5rem"
-          }
-        });
-  } catch (err) {
-    console.error(err);
-    toast.error("خطا در افزودن به سبد خرید",
-            {
-              style:{
-            fontSize:"1.5rem"
-              }
-            });
-  }
-};
+function PurchaseInfo({ product, openLoginModal }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleAddToCart = async (productSlug) => {
+    try {
+      await addToCart(productSlug);
+      toast.success("محصول به سبد خرید اضافه شد", {
+        style: { fontSize: "1.5rem" },
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error("خطا در افزودن به سبد خرید", {
+        style: { fontSize: "1.5rem" },
+      });
+    }
+  };
+
+  const handleBuyClick = () => {
+    if (!isLoggedIn) {
+      openLoginModal(); // صدا زدن مودال لاگین
+    } else {
+      handleAddToCart(product.slug);
+    }
+  };
 
   if (!product) return null;
 
   return (
     <div className={style.purchesInfoContainer}>
-      <Toaster/>
+      <Toaster />
       <div className={style.SnappPay}>
         <Image
           src={"/image/image 17.png"}
@@ -68,7 +79,7 @@ const handleAddToCart = async (productSlug) => {
             </Text>
           </Flex>
         </Flex>
-        <Button onClick={() => handleAddToCart(product.slug)} className={style.buyButton}>
+        <Button onClick={handleBuyClick} className={style.buyButton}>
           خرید
         </Button>
       </div>

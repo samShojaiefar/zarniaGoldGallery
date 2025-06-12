@@ -2,11 +2,11 @@ import { Typography, Flex, Select } from "antd";
 import Title from "antd/es/typography/Title";
 import style from "./detail.module.scss";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
-import PurchaseInfo from "../PurchaseInfo/PurchaseInfo"
+import PurchaseInfo from "../PurchaseInfo/PurchaseInfo";
+
 const { Text } = Typography;
 
-const Detail = ({product}) => {
-
+const Detail = ({ product, openLoginModal }) => {
   return (
     <div className={style.detailWrapper}>
       <div className={style.detailContainer}>
@@ -43,18 +43,18 @@ const Detail = ({product}) => {
           </Flex>
         </Flex>
       </div>
+
       <div className={style.descraptionContainer}>
         <Text type="secondary" className={style.descraiptionTitle}>
-          دسته:{product.categories.map((category)=> category.title).join(" ، ")}
+          دسته: {product.categories.map((category) => category.title).join(" ، ")}
         </Text>
         <Flex vertical>
           <Text type="secondary">توضیحات:</Text>
-          <Text type="secondary">
-            {product.description}
-          </Text>
+          <Text type="secondary">{product.description}</Text>
         </Flex>
       </div>
-      <PurchaseInfo product={product}/>
+
+      <PurchaseInfo product={product} openLoginModal={openLoginModal} />
     </div>
   );
 };

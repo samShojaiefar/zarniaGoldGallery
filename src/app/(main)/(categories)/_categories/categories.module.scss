@@ -4,6 +4,7 @@
   position: absolute;
   bottom: 0px;
   margin: 0px !important;
+  border-radius: 24px !important;
   .title {
     font-size: 1.6rem;
   }
@@ -47,5 +48,15 @@
     align-items: center;
     gap: 10px;
     align-self: stretch;
+  }
+}
+.button{
+  color: #000000 !important;
+  background-color: white !important;
+  border-radius: 12px;
+  height: 24px;
+  width: 54px;
+  &:hover{
+    background-color: #715A4133 !important;
   }
 }
