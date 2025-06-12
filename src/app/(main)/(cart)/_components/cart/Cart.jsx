@@ -20,7 +20,7 @@ import CartIcon from "@/app/(main)/(common)/_components/icon/CartIcon";
 import FavoriteIcon from "@/app/(main)/(common)/_components/icon/favorite";
 import BottomPurchaseInfo from "../bottomPurchaseInfo/BottomPurchaseInfo";
 import PurchaseInfo from "../PurchaseInfo/PurchaseInfo";
-import { deleteCartItem, getCartItems } from "@/lib/api/cartApi";
+import { addToCart, deleteCartItem, getCartItems, miunsProduct, removeProduct } from "@/lib/api/cartApi";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 
 const { Text } = Typography;
@@ -60,7 +60,18 @@ const Cart = () => {
     }
   };
   const renderItems = selectedTab === "a" ? cartItems : favoriteItems;
-
+  const handlePlusProduct = async (productSlug) => {
+    await addToCart(productSlug);
+    await fetchCart();
+  };
+  const handlemiunsProduct = async (productSlug) => {
+    await miunsProduct(productSlug);
+    await fetchCart();
+  };
+  const handleremoveProduct = async (productSlug) => {
+    await removeProduct(productSlug);
+    await fetchCart();
+  };
   return (
     <ConfigProvider
       theme={{
@@ -120,7 +131,7 @@ const Cart = () => {
             {loading ? (
               <Spin style={{ marginTop: "2rem" }} />
             ) : renderItems.length === 0 ? (
-              <Empty description="موردی یافت نشد" />
+              <Empty style={{marginTop:"50px"}} description="موردی یافت نشد" />
             ) : (
               renderItems.map((item, index) => (
                 <div key={index} className={style.cartCard}>
@@ -142,18 +153,23 @@ const Cart = () => {
                           </Text>
                         </Flex>
                       </Flex>
-                        <TrashIcon />
+                      <Button onClick={()=>handleremoveProduct(item.product_slug)} type="text">
+                      <TrashIcon />
+                      </Button>
                     </Flex>
                     <Flex justify="space-between">
                       <Text className={style.price}>
                         {toPersianDigits(item.total_price_formatted)} تومان
                       </Text>
                       <Flex align="center" gap={15}>
-                        <Button className={style.quntitybutton}>
+                        <Button
+                          onClick={() => handlePlusProduct(item.product_slug)}
+                          className={style.quntitybutton}
+                        >
                           <AddIcon width={34} height={34} border={false} />
                         </Button>
                         <Text>{toPersianDigits(item.count)}</Text>
-                        <Button className={style.quntitybutton}>
+                        <Button onClick={()=>handlemiunsProduct(item.product_slug)} className={style.quntitybutton}>
                           <MiunsIcon />
                         </Button>
                       </Flex>

@@ -3,7 +3,7 @@
 "use client";
 import { useState } from "react";
 import style from "./profile.module.scss";
-import { Button, Flex, Modal, Typography } from "antd";
+import { Button, Divider, Flex, Modal, Typography } from "antd";
 import BoxIcon from "@/app/(main)/(common)/_components/icon/BoxIcon";
 import AddressIcon from "@/app/(main)/(common)/_components/icon/AddressIcon";
 import InvoiceIcon from "@/app/(main)/(common)/_components/icon/InvoiceIcon";
@@ -113,11 +113,37 @@ export default function ProfilePage() {
           </Flex>
         );
       case "orders":
-        return <div>سفارش‌های من</div>; 
+        return (
+          <Flex vertical gap={8}>
+            <div className={style.orderCard}>
+              <Flex justify="space-between">
+                <Text type="secondary">وضعیت</Text>
+
+                <Text>ارسال شده</Text>
+              </Flex>
+              <Divider/>
+              <Flex justify="space-between">
+              <Flex gap={8} vertical>
+                <Text type="secondary">شماره سفارش</Text>
+                <Text type="secondary">تاریخ سفارش</Text>
+                <Text type="secondary">زمان دریافت</Text>
+                <Text type="secondary">مبلغ کل</Text>
+              </Flex>
+              <Flex gap={8} vertical>
+                <Text>#234234-23452</Text>
+                <Text>۱۴۰۴/۰۲/۱۰</Text>
+                <Text>۱۴۰۴/۰۲/۱۲</Text>
+                <Text>۱۲,۰۰۰,۰۰۰ تومان</Text>
+              </Flex>
+              </Flex>
+            </div>
+            
+          </Flex>
+        );
       case "invoices":
-        return <div>فاکتور‌ها</div>; 
+        return <div>فاکتور‌ها</div>;
       case "addresses":
-        return <div>آدرس‌های من</div>; 
+        return <div>آدرس‌های من</div>;
       case "account":
         return <div>جزئیات حساب</div>;
       default:
@@ -173,7 +199,6 @@ export default function ProfilePage() {
         });
         router.push("/");
         window.location.reload();
-        
       },
     });
   };

@@ -12,10 +12,19 @@ export async function addToCart(productSlug) {
 }
 export async function miunsProduct(productSlug) {
   try {
-    const response = await axiosInstance.get(`/shopping_cart/miuns/${productSlug}`);
+    const response = await axiosInstance.get(`/shopping_cart/minus/${productSlug}`);
     return response.data;
   } catch (error) {
-    console.error("Error adding to cart:", error);
+    console.error("Error reducing product quantity:", error);
+    throw error;
+  }
+}
+export async function removeProduct(productSlug) {
+  try {
+    const response = await axiosInstance.get(`/shopping_cart/remove/${productSlug}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error reducing product quantity:", error);
     throw error;
   }
 }
