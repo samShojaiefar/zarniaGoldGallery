@@ -1,7 +1,7 @@
 // app/(main)/profile/page.jsx
 
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./profile.module.scss";
 import { Button, Divider, Flex, Input, Modal, Typography } from "antd";
 import BoxIcon from "@/app/(main)/(common)/_components/icon/BoxIcon";
@@ -47,7 +47,12 @@ const handleCopy = async () => {
 
 export default function ProfilePage() {
   const router = useRouter();
-
+  useEffect(() => {
+    const isLoggedIn = !!localStorage.getItem("access_token");
+    if (!isLoggedIn) {
+      router.push("/");
+    }
+  }, [router]);
   const [selected, setSelected] = useState("dashboard");
 const UserInfoSection = ({ label, value }) => (
   <Flex align="center" justify="space-between" className={style.fieldRow}>
@@ -268,6 +273,7 @@ const AddressCard = ({ fullName, phone, address }) => (
       },
     });
   };
+
   return (
     <div className={style.profileContainer}>
       <Toaster />
