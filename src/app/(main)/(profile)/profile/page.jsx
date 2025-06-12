@@ -190,27 +190,29 @@ const AddressCard = ({ fullName, phone, address }) => (
           </Flex>
         );
       case "account":
-        return (
-<div className={style.profileContainer}>
+      return (
+<div className={style.profilecontainer}>
       <UserInfoSection label="نام" />
       <UserInfoSection label="نام خانوادگی"/>
       <UserInfoSection label="شماره همراه" />
       <UserInfoSection label="ایمیل" />
-          <div className={style.addressSeccision}>
+          <div className={style.addressSection}>
       <Text className={style.addNewAddress}>
         <AddIcon border/> افزودن آدرس جدید
       </Text>
       <div className={style.addressCard}>
      <div className={style.addressCard}>
-      <Flex style={{whiteSpace:"nowrap"}} vertical>
-        <Text>نام تحویل گیرنده</Text>
-        <Text>شماره تحویل گیرنده</Text>
-        <Text>آدرس</Text>
+      <Flex justify="space-between">
+        <Text type="secondary">نام گیرنده</Text>
+        <Text>سام شجاعی فر</Text>
       </Flex>
-      <Flex vertical>
-        <Text>اسم</Text>
+            <Flex justify="space-between">
+        <Text type="secondary">شماره تحویل گیرنده</Text>
         <Text>09123456789</Text>
-        <Text>تهران، تهران، بلوار صبا، خ موسیوند، پلاک ۲۳،‌واحد ۸</Text>
+      </Flex>
+            <Flex justify="space-between">
+        <Text type="secondary">آدرس</Text>
+        <Text className={style.address}>تهران، تهران، بلوار صبا، خ موسیوند، پلاک ۲۳،‌واحد ۸</Text>
       </Flex>
       </div>
       </div>
