@@ -1,58 +1,34 @@
 import React from "react";
-import { Button, Card, Col, Flex, Row, Typography } from "antd";
+import { Button, Card, Col, Flex, Row, Spin, Typography } from "antd";
 import Image from "next/image";
 const { Title, Text } = Typography;
 import style from "./productOffer.module.scss";
 import { useRouter } from "next/navigation";
 import LeftArrowIcon from "@/app/(main)/(common)/_components/icon/leftArrowIcon";
+import useSWR from "swr";
+import { toPersianDigits } from "@/lib/utils/toPersionNumber";
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 function ProductOffers() {
-  const offerProducts = [
-    {
-      image: "/image/ring.png",
-      title: "انگشتر گل رز",
-      off: "٪۲۰",
-      price: "۱۰,۰۰۰,۰۰۰",
-      offPrice: "۸,۰۰۰,۰۰۰",
-      installment: "۲,۵۰۰,۰۰۰",
-      Weight: "۱.۰۱۰",
-    },
-    {
-      image: "/image/ring.png",
-      title: "انگشتر گل رز",
-      off: "٪۲۰",
-      price: "۱۰,۰۰۰,۰۰۰",
-      offPrice: "۸,۰۰۰,۰۰۰",
-      installment: "۲,۵۰۰,۰۰۰",
-      Weight: "۱.۰۱۰",
-    },
-    {
-      image: "/image/ring.png",
-      title: "انگشتر گل رز",
-      off: "٪۲۰",
-      price: "۱۰,۰۰۰,۰۰۰",
-      offPrice: "۸,۰۰۰,۰۰۰",
-      installment: "۲,۵۰۰,۰۰۰",
-      Weight: "۱.۰۱۰",
-    },
-    {
-      image: "/image/ring.png",
-      title: "انگشتر گل رز",
-      off: "٪۲۰",
-      price: "۱۰,۰۰۰,۰۰۰",
-      offPrice: "۸,۰۰۰,۰۰۰",
-      installment: "۲,۵۰۰,۰۰۰",
-      Weight: "۱.۰۱۰",
-    },
-    {
-      image: "/image/ring.png",
-      title: "انگشتر گل رز",
-      off: "٪۲۰",
-      price: "۱۰,۰۰۰,۰۰۰",
-      offPrice: "۸,۰۰۰,۰۰۰",
-      installment: "۲,۵۰۰,۰۰۰",
-      Weight: "۱.۰۱۰",
-    },
-  ];
+  const { data, error, isLoading } = useSWR(
+    "https://api.mclp.ir/api/v1/products",
+    fetcher
+  );
+
+  if (isLoading) {
+    return (
+      <div className={style.productContainer}>
+        <Spin tip="در حال بارگذاری محصولات..." />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>خطا در دریافت محصولات</div>;
+  }
+
+  // فرض: API بازگشتی ساختاری شبیه { data: Product[] }
+  const products = (data?.data || []).slice(0, 5);
   const router = useRouter();
   return (
     <>
@@ -73,54 +49,46 @@ function ProductOffers() {
         </div>
 
         <Flex className={style.cardContainer} gap={"16px"}>
-          {offerProducts.map((product, index) => (
-            <Flex key={offerProducts} gap={"5rem"}>
-              <Card
-                className={style.card}
-                hoverable
-                cover={<Image src={product.image} width={143} height={143} />}
-              >
-                <span className={style.offBadge}>{product.off}</span>
-                <Flex vertical>
-                  <Text className={style.cardTitle}>{product.title}</Text>
-                  <Flex justify="space-between">
-                    <Text className={style.weight}>وزن:</Text>
-                    <Text className={style.weight}>{product.Weight}</Text>
+            {products.map((product) => (
+              <Flex key={product.title} gap={"5rem"}>
+                <Card
+                  className={style.card}
+                  hoverable
+                  cover={<Image src={product.image} width={143} height={143} />}
+                >
+                  <Flex vertical>
+                    <Text className={style.cardTitle}>{product.name}</Text>
+                    <Flex justify="space-between">
+                      <Text className={style.weight}>وزن:</Text>
+                      <Text className={style.weight}>{toPersianDigits(product.weight)}</Text>
+                    </Flex>
                   </Flex>
-                </Flex>
-                <Flex gap={"6px"} vertical>
-                  <Flex
-                    className={style.priceContainer}
-                    align="center"
-                    justify="space-between"
-                  >
-                    <Text className={style.priceTitle}>قیمت کل</Text>
-                    <Flex align="end" vertical>
-                      <Text className={style.price} delete>
-                        {product.price} تومان
-                      </Text>
-                      <Flex align="center">
-                        <Text className={style.offPrice}>
-                          {product.offPrice}
-                        </Text>
-                        <Text className={style.toman}>تومان</Text>
+                  <Flex gap={"6px"} vertical>
+                    <Flex
+                      className={style.priceContainer}
+                      align="center"
+                      justify="space-between"
+                    >
+                      <Text className={style.priceTitle}>قیمت کل</Text>
+                      <Flex align="center" gap={"2px"}>
+                        <Text className={style.price}>{toPersianDigits(product.price)}</Text>
+                        <Text className={style.toman}> تومان</Text>
                       </Flex>
                     </Flex>
+                    <div className={style.InstallmentContainer}>
+                      <Flex align="center" justify="space-between">
+                        <Text className={style.installmentTitle}>هر قسط:</Text>
+                        <Text className={style.installment}>
+                          {" "}
+                          {toPersianDigits(product.snapp_pay_each_installment)} تومان{" "}
+                        </Text>
+                      </Flex>
+                    </div>
                   </Flex>
-                  <div className={style.InstallmentContainer}>
-                    <Flex align="center" justify="space-between">
-                      <Text className={style.installmentTitle}>هر قسط:</Text>
-                      <Text className={style.installment}>
-                        {" "}
-                        {product.installment} تومان{" "}
-                      </Text>
-                    </Flex>
-                  </div>
-                </Flex>
-              </Card>
-            </Flex>
-          ))}
-        </Flex>
+                </Card>
+              </Flex>
+            ))}
+          </Flex>
       </div>
     </>
   );
