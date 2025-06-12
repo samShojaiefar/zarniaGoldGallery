@@ -6,7 +6,7 @@ import FooterInfo from "./(common)/_components/footer/footerInfo/FooterInfo";
 import Header from "./(common)/_components/_header/header";
 import BottomNav from "./(common)/_components/buttomNav/ButtomNav";
 import useResponsive from "@/lib/hooks/useResponsive";
-
+import { AuthProvider } from "./(common)/context/AuthContext";
 export const metadata = {
   title: "گالری زرنیا",
 };
@@ -14,7 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const { isMobile } = useResponsive;
   return (
-    <html className={IranSansX.variable} lang="fa" dir="rtl">
+      <AuthProvider>
+        <html className={IranSansX.variable} lang="fa" dir="rtl">
       <body>
         <ConfigProvider
           theme={{
@@ -42,5 +43,6 @@ export default function RootLayout({ children }) {
         </ConfigProvider>
       </body>
     </html>
+      </AuthProvider>
   );
 }

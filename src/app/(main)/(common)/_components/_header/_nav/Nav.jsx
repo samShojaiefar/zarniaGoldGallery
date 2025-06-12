@@ -18,6 +18,9 @@ import CartIcon from "../../icon/CartIcon";
 import Logo from "../../icon/logo";
 import ArrowIcon from "../../icon/ArrowIcon";
 import Image from "next/image";
+import {useAuth} from "@/app/(main)/(common)/context/AuthContext";
+
+
 
 const { Text } = Typography;
 
@@ -27,7 +30,7 @@ export default function Nav() {
   const router = useRouter();
   const { isDesktop } = useResponsive();
 
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  const {showAuthModal, setShowAuthModal} = useAuth();
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [token, setToken] = useState(null);
 

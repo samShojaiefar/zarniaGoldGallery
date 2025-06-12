@@ -7,14 +7,16 @@ import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 import { addToCart } from "@/lib/api/cartApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
+import {useAuth} from "@/app/(main)/(common)/context/AuthContext";
 
 const { Text } = Typography;
 
 function PurchaseInfo({ product, openLoginModal }) {
+  const { setShowAuthModal } = useAuth();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
     setIsLoggedIn(!!token);
   }, []);
 
@@ -34,7 +36,7 @@ function PurchaseInfo({ product, openLoginModal }) {
 
   const handleBuyClick = () => {
     if (!isLoggedIn) {
-      openLoginModal(); // صدا زدن مودال لاگین
+      setShowAuthModal(true);
     } else {
       handleAddToCart(product.slug);
     }

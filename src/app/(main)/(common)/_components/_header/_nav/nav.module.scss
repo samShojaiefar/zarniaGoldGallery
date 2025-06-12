@@ -49,8 +49,11 @@
     outline: none !important;
     width: 250px;
     @media screen and (min-width: 1440px) {
-    width: 700px;
+      width: 700px;
+    }
   }
+  .searchInput:hover {
+    border-color: #171717;
   }
 }
 .searchBox {

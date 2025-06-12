@@ -54,9 +54,9 @@ function Auth({ onClose }) {
     }
   };
 
-  const handleOtpSubmit = async () => {
+  const handleOtpSubmit = async (otpValue = otp) => {
     try {
-      const data = await triggerVerifyOtp({ phone, otp });
+      const data = await triggerVerifyOtp({ phone, otp: otpValue });
       const token = data.token;
       localStorage.setItem("access_token", token);
       toast.success("ورود موفق بود", { style: { fontSize: "1.5rem" } });
@@ -140,12 +140,12 @@ function Auth({ onClose }) {
             <Flex vertical gap={20} style={{ height: "380px" }}>
               <Flex vertical gap={16}>
                 <Flex
-                  onClick={() => setStep(1)}
-                  style={{ cursor: "pointer" }}
-                  align="center"
-                  gap={8}
+                    onClick={() => setStep(1)}
+                    style={{cursor: "pointer"}}
+                    align="center"
+                    gap={8}
                 >
-                  <LeftArrowIcon color="black" className={style.arrow} width={24} height={24} />
+                  <LeftArrowIcon color="black" className={style.arrow} width={24} height={24}/>
                   <Text className={style.title}>اصلاح شماره همراه</Text>
                 </Flex>
 
@@ -155,69 +155,69 @@ function Auth({ onClose }) {
 
                 <div className={style.otpInputsWrapper}>
                   {[0, 1, 2, 3].map((i) => (
-                    <input
-                      key={i}
-                      type="text"
-                      inputMode="numeric"
-                      maxLength={1}
-                      className={style.otpInput}
-                      value={otp[i] || ""}
-                      onChange={(e) => {
-                        const val = e.target.value.replace(/[^0-9]/g, "");
-                        const newOtp = otp.split("");
-                        newOtp[i] = val;
-                        const finalOtp = newOtp.join("").slice(0, 4);
-                        setOtp(finalOtp);
+                      <input
+                          key={i}
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={1}
+                          className={style.otpInput}
+                          value={otp[i] || ""}
+                          onChange={(e) => {
+                            const val = e.target.value.replace(/[^0-9]/g, "");
+                            const newOtp = otp.split("");
+                            newOtp[i] = val;
+                            const finalOtp = newOtp.join("").slice(0, 4);
+                            setOtp(finalOtp);
 
-                        if (val) {
-                          if (i < 3) {
-                            const nextInput = document.getElementById(`otp-input-${i + 1}`);
-                            nextInput?.focus();
-                          } else if (i === 3 && finalOtp.length === 4) {
-                            setTimeout(() => handleOtpSubmit(), 200);
-                          }
-                        }
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Backspace") {
-                          const newOtp = otp.split("");
-                          if (otp[i]) {
-                            newOtp[i] = "";
-                            setOtp(newOtp.join(""));
-                          } else if (i > 0) {
-                            const prevInput = document.getElementById(`otp-input-${i - 1}`);
-                            prevInput?.focus();
-                            newOtp[i - 1] = "";
-                            setOtp(newOtp.join(""));
-                          }
-                        }
-                      }}
-                      id={`otp-input-${i}`}
-                    />
+                            if (val) {
+                              if (i < 3) {
+                                const nextInput = document.getElementById(`otp-input-${i + 1}`);
+                                nextInput?.focus();
+                              } else if (i === 3 && finalOtp.length === 4) {
+                                setTimeout(() => handleOtpSubmit(finalOtp), 200); // Pass finalOtp directly
+                              }
+                            }
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                              const newOtp = otp.split("");
+                              if (otp[i]) {
+                                newOtp[i] = "";
+                                setOtp(newOtp.join(""));
+                              } else if (i > 0) {
+                                const prevInput = document.getElementById(`otp-input-${i - 1}`);
+                                prevInput?.focus();
+                                newOtp[i - 1] = "";
+                                setOtp(newOtp.join(""));
+                              }
+                            }
+                          }}
+                          id={`otp-input-${i}`}
+                      />
                   ))}
                 </div>
 
                 <div className={style.resendWrapper}>
                   {resendEnabled ? (
-                    <Button type="link" onClick={handleResendOtp} style={{ padding: 0 }}>
-                      ارسال مجدد کد
-                    </Button>
+                      <Button type="link" onClick={handleResendOtp} style={{padding: 0}}>
+                        ارسال مجدد کد
+                      </Button>
                   ) : (
-                    <Text type="secondary">
-                      ارسال مجدد کد تا {toPersianDigits(Math.floor(timer / 60))}:
-                      {toPersianDigits(String(timer % 60).padStart(2, "0"))} دقیقه دیگر
-                    </Text>
+                      <Text type="secondary">
+                        ارسال مجدد کد تا {toPersianDigits(Math.floor(timer / 60))}:
+                        {toPersianDigits(String(timer % 60).padStart(2, "0"))} دقیقه دیگر
+                      </Text>
                   )}
                 </div>
               </Flex>
 
               <Form.Item>
                 <Button
-                  type="primary"
-                  className={style.button}
-                  htmlType="submit"
-                  block
-                  loading={isVerifying}
+                    type="primary"
+                    className={style.button}
+                    htmlType="submit"
+                    block
+                    loading={isVerifying}
                 >
                   ادامه
                 </Button>
