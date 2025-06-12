@@ -3,7 +3,7 @@
 "use client";
 import { useState } from "react";
 import style from "./profile.module.scss";
-import { Button, Divider, Flex, Modal, Typography } from "antd";
+import { Button, Divider, Flex, Input, Modal, Typography } from "antd";
 import BoxIcon from "@/app/(main)/(common)/_components/icon/BoxIcon";
 import AddressIcon from "@/app/(main)/(common)/_components/icon/AddressIcon";
 import InvoiceIcon from "@/app/(main)/(common)/_components/icon/InvoiceIcon";
@@ -11,9 +11,12 @@ import LeftArrowIcon from "@/app/(main)/(common)/_components/icon/leftArrowIcon"
 import ProfileIcon from "@/app/(main)/(common)/_components/icon/profileIcon";
 import LogoutIcon from "@/app/(main)/(common)/_components/icon/LogoutIcon";
 import CopyIcon from "@/app/(main)/(common)/_components/icon/CopyIcon";
+import DownloadIcon from "@/app/(main)/(common)/_components/icon/DownloadIcon";
+import EditIcon from "@/app/(main)/(common)/_components/icon/EditIcon";
 import Title from "antd/es/typography/Title";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import AddIcon from "../../(common)/_components/icon/AddIcon";
 
 const { Text } = Typography;
 const options = [
@@ -46,6 +49,26 @@ export default function ProfilePage() {
   const router = useRouter();
 
   const [selected, setSelected] = useState("dashboard");
+const UserInfoSection = ({ label, value }) => (
+  <Flex align="center" justify="space-between" className={style.fieldRow}>
+    <Flex vertical>
+      <Text type="secondary" className={style.label}>
+        {label}
+      </Text>
+      <Input className={style.input} value={value}/>
+    </Flex>
+    <EditIcon className={style.editIcon} />
+  </Flex>
+);
+
+const AddressCard = ({ fullName, phone, address }) => (
+  <div className={style.addressCard}>
+    <Text>{fullName}</Text>
+    <Text>{phone}</Text>
+    <Text>{address}</Text>
+    <Button className={style.editAddressBtn}>تغییر</Button>
+  </div>
+);
 
   const renderContent = () => {
     switch (selected) {
@@ -121,31 +144,74 @@ export default function ProfilePage() {
 
                 <Text>ارسال شده</Text>
               </Flex>
-              <Divider/>
+              <Divider />
               <Flex justify="space-between">
-              <Flex gap={8} vertical>
-                <Text type="secondary">شماره سفارش</Text>
-                <Text type="secondary">تاریخ سفارش</Text>
-                <Text type="secondary">زمان دریافت</Text>
-                <Text type="secondary">مبلغ کل</Text>
-              </Flex>
-              <Flex gap={8} vertical>
-                <Text>#234234-23452</Text>
-                <Text>۱۴۰۴/۰۲/۱۰</Text>
-                <Text>۱۴۰۴/۰۲/۱۲</Text>
-                <Text>۱۲,۰۰۰,۰۰۰ تومان</Text>
-              </Flex>
+                <Flex gap={8} vertical>
+                  <Text type="secondary">شماره سفارش</Text>
+                  <Text type="secondary">تاریخ سفارش</Text>
+                  <Text type="secondary">زمان دریافت</Text>
+                  <Text type="secondary">مبلغ کل</Text>
+                </Flex>
+                <Flex gap={8} vertical>
+                  <Text>#234234-23452</Text>
+                  <Text>۱۴۰۴/۰۲/۱۰</Text>
+                  <Text>۱۴۰۴/۰۲/۱۲</Text>
+                  <Text>۱۲,۰۰۰,۰۰۰ تومان</Text>
+                </Flex>
               </Flex>
             </div>
-            
           </Flex>
         );
       case "invoices":
-        return <div>فاکتور‌ها</div>;
-      case "addresses":
-        return <div>آدرس‌های من</div>;
+        return (
+          <Flex vertical gap={8}>
+            <div className={style.invoiceCard}>
+              <Flex style={{ width: "100%" }} justify="space-between">
+                <Flex gap={8} vertical>
+                  <Text type="secondary">شماره فاکتور</Text>
+                  <Text type="secondary">تاریخ سفارش</Text>
+                  <Text type="secondary">مبلغ کل</Text>
+                </Flex>
+                <Flex gap={8} vertical>
+                  <Text>#234234-23452</Text>
+                  <Text>۱۴۰۴/۰۲/۱۰</Text>
+                  <Text>۱۲,۰۰۰,۰۰۰ تومان</Text>
+                </Flex>
+              </Flex>
+              <Button className={style.downloadButton} icon={<DownloadIcon />}>
+                دانلود
+              </Button>
+            </div>
+          </Flex>
+        );
       case "account":
-        return <div>جزئیات حساب</div>;
+        return (
+<div className={style.profileContainer}>
+      <UserInfoSection label="نام" />
+      <UserInfoSection label="نام خانوادگی"/>
+      <UserInfoSection label="شماره همراه" />
+      <UserInfoSection label="ایمیل" />
+          <div className={style.addressSeccision}>
+      <Text className={style.addNewAddress}>
+        <AddIcon border/> افزودن آدرس جدید
+      </Text>
+      <div className={style.addressCard}>
+     <div className={style.addressCard}>
+      <Flex style={{whiteSpace:"nowrap"}} vertical>
+        <Text>نام تحویل گیرنده</Text>
+        <Text>شماره تحویل گیرنده</Text>
+        <Text>آدرس</Text>
+      </Flex>
+      <Flex vertical>
+        <Text>اسم</Text>
+        <Text>09123456789</Text>
+        <Text>تهران، تهران، بلوار صبا، خ موسیوند، پلاک ۲۳،‌واحد ۸</Text>
+      </Flex>
+      </div>
+      </div>
+    </div>
+    </div>
+        );
       default:
         return (
           <>

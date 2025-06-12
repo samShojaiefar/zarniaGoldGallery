@@ -54,10 +54,10 @@ const ProductsList = () => {
 const handleAddToCart = async (productSlug) => {
   try {
     await addToCart(productSlug);
-    toast.sucsses("محصول به سبد خرید اضافه شد");
+    toast.sucsses("محصول به سبد خرید اضافه شد", { style: { fontSize: "1.5rem" } });
   } catch (err) {
     console.error(err);
-    toast.error("خطا در افزودن به سبد خرید");
+    toast.error("خطا در افزودن به سبد خرید", { style: { fontSize: "1.5rem" } });
   }
 };
 

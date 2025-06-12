@@ -157,3 +157,98 @@
   border-radius: 12px;
   background-color: #ede5df;
 }
+.invoiceCard{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+    max-width: 840px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #ede5df;
+.downloadButton{
+  width: 100px;
+  height: 48px;
+  border-radius: 12px;
+  padding: 8px;
+  background-color: #715a41;
+  color: white;
+}}
+.input{
+  border: none !important;
+  outline: none !important;
+}
+.fieldRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid #e5e5e5;
+  margin: 16px;
+}
+
+.label {
+  font-size: 12px;
+  margin:16px 4px 4px 4px;
+}
+
+.input {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 0;
+  font-size: 14px;
+  background: transparent !important;
+  cursor: default;
+}
+
+.editIcon {
+  cursor: pointer;
+  color: #715a41;
+}
+
+.addressSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.addNewAddress {
+  color: #715a41;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.addressCard {
+  background-color: #ede5df;
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  strong {
+    font-size: 14px;
+    color: #000;
+  }
+
+  .ant-typography {
+    font-size: 13px;
+    color: #333;
+  }
+}
+
+.editAddressBtn {
+  background-color: #715a41 !important;
+  color: #fff !important;
+  border: none;
+  width: 80px;
+  height: 32px;
+  border-radius: 8px;
+  align-self: flex-start;
+  font-size: 13px;
+  margin-top: 8px;
+}
