@@ -8,7 +8,7 @@ import {
   Radio,
   Typography,
 } from "antd";
-import useResponsive from "@/lib/hooks/useResponsive"
+import useResponsive from "@/lib/hooks/useResponsive";
 import style from "./discountProductsList.module.scss";
 import Image from "next/image";
 import ArrowIcon from "../../../../(common)/_components/icon/ArrowIcon";
@@ -132,7 +132,7 @@ const DiscountProductsList = () => {
             Radio: {
               buttonBg: "#fffff",
               buttonCheckedBg: "#C7A78233",
-              buttonColor: "#715A4199",
+              buttonColor: "#BCA27B99",
               buttonSolidCheckedHoverBg: "#c4a484",
               colorBorder: "none",
               colorPrimaryHover: "none",

@@ -20,7 +20,13 @@ import CartIcon from "@/app/(main)/(common)/_components/icon/CartIcon";
 import FavoriteIcon from "@/app/(main)/(common)/_components/icon/favorite";
 import BottomPurchaseInfo from "../bottomPurchaseInfo/BottomPurchaseInfo";
 import PurchaseInfo from "../PurchaseInfo/PurchaseInfo";
-import { addToCart, deleteCartItem, getCartItems, miunsProduct, removeProduct } from "@/lib/api/cartApi";
+import {
+  addToCart,
+  deleteCartItem,
+  getCartItems,
+  miunsProduct,
+  removeProduct,
+} from "@/lib/api/cartApi";
 import { toPersianDigits } from "@/lib/utils/toPersionNumber";
 
 const { Text } = Typography;
@@ -78,11 +84,11 @@ const Cart = () => {
         components: {
           Radio: {
             buttonBg: "#EDE5DF",
-            buttonCheckedBg: "#715A41",
-            buttonColor: "#715A41",
+            buttonCheckedBg: "#BCA27B",
+            buttonColor: "#BCA27B",
             buttonCheckedColor: "#fff",
             borderRadius: 42,
-            colorPrimary: "#715A41",
+            colorPrimary: "#BCA27B",
           },
         },
       }}
@@ -101,10 +107,10 @@ const Cart = () => {
                   <CartIcon
                     width={24}
                     height={24}
-                    color={selectedTab === "a" ? "white" : "#715A41"}
+                    color={selectedTab === "a" ? "white" : "#BCA27B"}
                   />
                   <span
-                    style={{ color: selectedTab === "a" ? "white" : "#715A41" }}
+                    style={{ color: selectedTab === "a" ? "white" : "#BCA27B" }}
                   >
                     سبد خرید
                   </span>
@@ -115,10 +121,10 @@ const Cart = () => {
                   <FavoriteIcon
                     width={24}
                     height={24}
-                    color={selectedTab === "b" ? "white" : "#715A41"}
+                    color={selectedTab === "b" ? "white" : "#BCA27B"}
                   />
                   <span
-                    style={{ color: selectedTab === "b" ? "white" : "#715A41" }}
+                    style={{ color: selectedTab === "b" ? "white" : "#BCA27B" }}
                   >
                     علاقه‌مندی‌ها
                   </span>
@@ -131,13 +137,16 @@ const Cart = () => {
             {loading ? (
               <Spin style={{ marginTop: "2rem" }} />
             ) : renderItems.length === 0 ? (
-              <Empty style={{marginTop:"50px"}} description="موردی یافت نشد" />
+              <Empty
+                style={{ marginTop: "50px" }}
+                description="موردی یافت نشد"
+              />
             ) : (
               renderItems.map((item, index) => (
                 <div key={index} className={style.cartCard}>
                   <Flex vertical className={style.cardContentConteiner}>
                     <Flex align="center" justify="space-between">
-                      <Flex align="center">
+                      <Flex align="center" gap={8}>
                         <Image
                           src={item.image}
                           width={64}
@@ -153,8 +162,11 @@ const Cart = () => {
                           </Text>
                         </Flex>
                       </Flex>
-                      <Button onClick={()=>handleremoveProduct(item.product_slug)} type="text">
-                      <TrashIcon />
+                      <Button
+                        onClick={() => handleremoveProduct(item.product_slug)}
+                        type="text"
+                      >
+                        <TrashIcon />
                       </Button>
                     </Flex>
                     <Flex justify="space-between">
@@ -169,7 +181,10 @@ const Cart = () => {
                           <AddIcon width={34} height={34} border={false} />
                         </Button>
                         <Text>{toPersianDigits(item.count)}</Text>
-                        <Button onClick={()=>handlemiunsProduct(item.product_slug)} className={style.quntitybutton}>
+                        <Button
+                          onClick={() => handlemiunsProduct(item.product_slug)}
+                          className={style.quntitybutton}
+                        >
                           <MiunsIcon />
                         </Button>
                       </Flex>

@@ -1,7 +1,7 @@
 export default function FavoriteIcon({
   width = 24,
   height = 24,
-  color = "#715A41",
+  color = "#BCA27B",
   className,
 }) {
   return (

@@ -38,9 +38,10 @@ const ProductDetail = () => {
               <FavoriteIcon className={style.favorite} />
               <Image
                 src={data.data.image}
-                width={344}
-                height={344}
+                width={ 490}
+                height={490}
                 alt={data.data.name}
+                style={{borderRadius:"16px"}}
               />
             </div>
 

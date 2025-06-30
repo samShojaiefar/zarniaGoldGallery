@@ -1,28 +1,27 @@
-.goldPriceContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #C4A8934D !important;
-    margin: 0 !important;
-    padding: 0px 16px;
-    height: 40px;
-   @media screen and (min-width:768px) {
+.goldPriceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c4a8934d !important;
+  margin: 0 !important;
+  padding: 0px 16px;
+  height: 40px;
+  @media screen and (min-width: 768px) {
     display: flex;
     justify-content: center;
     gap: 16px;
-   }
-    .goldPrice{
-color: #715A41;
-font-size: 1.4rem;
-font-weight: 700;
-    }
-    .currency{
-    color: #684429CC;
+  }
+  .goldPrice {
+    color: #bca27b;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .currency {
+    color: #684429cc;
     font-size: 1.2rem;
-    }
-    .description{
-        color: #684429CC;
-        font-size: 1.2rem;
-    }
+  }
+  .description {
+    color: #684429cc;
+    font-size: 1.2rem;
+  }
 }
-

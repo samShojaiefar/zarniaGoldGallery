@@ -13,7 +13,7 @@ import Image from "next/image";
 const { Title, Text } = Typography;
 import style from "./RelatedProducts.module.scss";
 import LeftArrowIcon from "@/app/(main)/(common)/_components/icon/leftArrowIcon";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 function RelatedProducts() {
   const products = [
     {
@@ -63,7 +63,7 @@ function RelatedProducts() {
     },
   ];
   const router = useRouter();
-  
+
   return (
     <>
       <ConfigProvider
@@ -72,7 +72,7 @@ function RelatedProducts() {
             Radio: {
               buttonBg: "#fffff",
               buttonCheckedBg: "#C7A78233",
-              buttonColor: "#715A4199",
+              buttonColor: "#BCA27B99",
               buttonSolidCheckedHoverBg: "#c4a484",
               colorBorder: "none",
               colorPrimaryHover: "none",
@@ -83,10 +83,8 @@ function RelatedProducts() {
         }}
       >
         <div className={style.productContainer}>
-          <div >
-            <div
-              className={style.titleContainer}
-            >
+          <div>
+            <div className={style.titleContainer}>
               <Title level={4}>محصولات مرتبط</Title>
             </div>
           </div>
@@ -121,10 +119,10 @@ function RelatedProducts() {
                       <Flex align="center" justify="space-between">
                         <Text className={style.installmentTitle}>هر قسط:</Text>
                         <div>
-                        <Text className={style.installment}>
-                          {" "}
-                          {product.installment} {" "}
-                        </Text>
+                          <Text className={style.installment}>
+                            {" "}
+                            {product.installment}{" "}
+                          </Text>
                         </div>
                       </Flex>
                     </div>

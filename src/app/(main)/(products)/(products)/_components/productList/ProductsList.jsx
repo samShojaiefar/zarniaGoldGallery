@@ -119,8 +119,8 @@ const handleAddToCart = async (productSlug) => {
                     <Image
                       onClick={() => router.push(`/products/${product.slug}`)}
                       src={product.image}
-                      width={143}
-                      height={143}
+                      width={ 200}
+                      height={200}
                       alt={product.name}
                     />
                   }

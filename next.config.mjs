@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      domains: ['api.mclp.ir'],
-    },
-  };
-  
+  reactStrictMode: true,
+  images: {
+    domains: ['api.mclp.ir', 'localhost'],
+  },
+};
+
 export default nextConfig;

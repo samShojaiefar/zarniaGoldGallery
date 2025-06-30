@@ -41,7 +41,7 @@ function Category() {
               style={{ cursor: "pointer" }}
             >
               <img
-                src={category.image} // اگر image از API نمی‌آید، می‌توان از placeholder استفاده کرد
+              src={category.image}
                 alt={category.title}
                 className={style.categoryImage}
               />

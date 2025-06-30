@@ -1,4 +1,4 @@
-export default function SupportIcon({ width=32, height=32, color }) {
+export default function SupportIcon({ width = 32, height = 32, color }) {
   return (
     <svg
       width={width}
@@ -33,7 +33,7 @@ export default function SupportIcon({ width=32, height=32, color }) {
       />
       <path
         d="M6.57335 6.57335L12.2267 12.2267M19.7734 12.2267L25.4267 6.57335M19.7734 19.7734L25.4267 25.4267M12.2267 19.7734L6.57335 25.4267M29.3334 16C29.3334 23.3638 23.3638 29.3334 16 29.3334C8.63622 29.3334 2.66669 23.3638 2.66669 16C2.66669 8.63622 8.63622 2.66669 16 2.66669C23.3638 2.66669 29.3334 8.63622 29.3334 16ZM21.3334 16C21.3334 18.9455 18.9455 21.3334 16 21.3334C13.0545 21.3334 10.6667 18.9455 10.6667 16C10.6667 13.0545 13.0545 10.6667 16 10.6667C18.9455 10.6667 21.3334 13.0545 21.3334 16Z"
-        stroke="#715A41"
+        stroke="#BCA27B"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"

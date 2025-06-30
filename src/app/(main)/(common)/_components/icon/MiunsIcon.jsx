@@ -9,7 +9,7 @@ export default function MiunsIcon({ width = 24, height = 24, color }) {
     >
       <path
         d="M5 12H19"
-        stroke="#715A41"
+        stroke="#BCA27B"
         stroke-width="1.5"
         stroke-linecap="round"
         stroke-linejoin="round"

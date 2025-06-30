@@ -14,35 +14,35 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const { isMobile } = useResponsive;
   return (
-      <AuthProvider>
-        <html className={IranSansX.variable} lang="fa" dir="rtl">
-      <body>
-        <ConfigProvider
-          theme={{
-            token: {
-              fontFamily: IranSansX.style.fontFamily,
-            },
-            components: {
-              Radio: {
-                buttonBg: "#ffffff",
-                buttonCheckedBg: "#C7A78233",
-                buttonColor: "#715A4199",
-                buttonSolidCheckedHoverBg: "#c4a484",
-                colorBorder: "none",
-                colorPrimaryHover: "none",
-                borderRadius: "42px",
-                colorPrimary: "none",
+    <AuthProvider>
+      <html className={IranSansX.variable} lang="fa" dir="rtl">
+        <body>
+          <ConfigProvider
+            theme={{
+              token: {
+                fontFamily: IranSansX.style.fontFamily,
               },
-            },
-          }}
-        >
-          <Header />
-          <AntdRegistry>{children}</AntdRegistry>
-          <FooterInfo />
-          <BottomNav />
-        </ConfigProvider>
-      </body>
-    </html>
-      </AuthProvider>
+              components: {
+                Radio: {
+                  buttonBg: "#ffffff",
+                  buttonCheckedBg: "#C7A78233",
+                  buttonColor: "#BCA27B99",
+                  buttonSolidCheckedHoverBg: "#c4a484",
+                  colorBorder: "none",
+                  colorPrimaryHover: "none",
+                  borderRadius: "42px",
+                  colorPrimary: "none",
+                },
+              },
+            }}
+          >
+            <Header />
+            <AntdRegistry>{children}</AntdRegistry>
+            <FooterInfo />
+            <BottomNav />
+          </ConfigProvider>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

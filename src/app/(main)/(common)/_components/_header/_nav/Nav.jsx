@@ -99,7 +99,7 @@ export default function Nav() {
                   icon={<ProfileIcon width={24} height={24} color="black" />}
                   onClick={() => router.push("/profile")}
                 >
-                  {user.phone || "پروفایل"}
+                  {user.name || user.phone || "پروفایل"}
                 </Button>
               ) : (
                 <Button

@@ -32,15 +32,15 @@
   .arrow {
     rotate: 180deg;
   }
-  .button{
+  .button {
     width: 100%;
-    background-color:#715A41;
+    background-color: #bca27b;
     padding: 8px;
     border-radius: 12px;
     height: 48px;
   }
 
-  .customCol{
+  .customCol {
     display: flex;
     padding: 8px 0px;
     flex-direction: column;
@@ -50,13 +50,13 @@
     align-self: stretch;
   }
 }
-.button{
+.button {
   color: #000000 !important;
   background-color: white !important;
   border-radius: 12px;
   height: 24px;
   width: 54px;
-  &:hover{
-    background-color: #715A4133 !important;
+  &:hover {
+    background-color: #bca27b33 !important;
   }
 }

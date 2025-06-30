@@ -55,7 +55,7 @@ function Products() {
           Radio: {
             buttonBg: "#ffffff",
             buttonCheckedBg: "#C7A78233",
-            buttonColor: "#715A4199",
+            buttonColor: "#BCA27B99",
             buttonSolidCheckedHoverBg: "#c4a484",
             borderRadius: "42px",
           },
@@ -77,27 +77,26 @@ function Products() {
         </div>
 
         <Radio.Group
-  block
-  className={style.filterContainer}
-  defaultValue={categories[0]?.title}
-  onChange={(e) => {
-    const selectedCategory = categories.find(
-      (cat) => cat.title === e.target.value
-    );
-    if (selectedCategory) {
-      router.push(`/products?category_ids[1]=${selectedCategory.id}`);
-    }
-  }}
->
-  {categories.map((category) => (
-    <div key={category.id} className={style.filter}>
-      <Radio.Button value={category.title}>
-        {category.title}
-      </Radio.Button>
-    </div>
-  ))}
-</Radio.Group>
-
+          block
+          className={style.filterContainer}
+          defaultValue={categories[0]?.title}
+          onChange={(e) => {
+            const selectedCategory = categories.find(
+              (cat) => cat.title === e.target.value
+            );
+            if (selectedCategory) {
+              router.push(`/products?category_ids[1]=${selectedCategory.id}`);
+            }
+          }}
+        >
+          {categories.map((category) => (
+            <div key={category.id} className={style.filter}>
+              <Radio.Button value={category.title}>
+                {category.title}
+              </Radio.Button>
+            </div>
+          ))}
+        </Radio.Group>
 
         <Flex className={style.cardContainer} gap={"16px"}>
           {products.map((product) => (
@@ -109,8 +108,8 @@ function Products() {
                   <Image
                     src={product.image}
                     alt={product.name}
-                    width={143}
-                    height={143}
+                    width={200}
+                    height={200}
                   />
                 }
               >

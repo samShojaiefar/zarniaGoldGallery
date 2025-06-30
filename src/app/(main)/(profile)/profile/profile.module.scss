@@ -36,10 +36,10 @@
 
       &.active {
         background-color: #c7a78233;
-        color: #715a41;
+        color: #bca27b;
       }
       .TabTitle {
-        color: #715a41 !important;
+        color: #bca27b !important;
       }
     }
   }
@@ -102,7 +102,7 @@
       }
 
       .tabTitle {
-        color: #715a41;
+        color: #bca27b;
         margin-right: 8px;
       }
     }
@@ -146,7 +146,7 @@
       border-radius: 12px;
       padding: 8px;
       margin: auto 0px;
-      background-color: #715a41 !important;
+      background-color: #bca27b !important;
     }
   }
 }
@@ -171,7 +171,7 @@
     height: 48px;
     border-radius: 12px;
     padding: 8px;
-    background-color: #715a41;
+    background-color: #bca27b;
     color: white;
   }
 }
@@ -186,6 +186,10 @@
   padding: 24px 0;
   border-bottom: 1px solid #e5e5e5;
   margin: 16px;
+  @media screen and (min-width: 768px) {
+    border: none;
+    gap: 16px;
+  }
 }
 
 .label {
@@ -198,20 +202,32 @@
   outline: none !important;
   box-shadow: none !important;
   padding: 0;
-  font-size: 14px;
+  font-size: 16px;
   background: transparent !important;
   cursor: default;
 }
 
 .editIcon {
   cursor: pointer;
-  color: #715a41;
+  color: #bca27b;
 }
 .profilecontainer {
   width: auto;
   margin: auto;
-  @media screen and (min-width:768px){
+  @media screen and (min-width: 768px) {
     width: 700px !important;
+  }
+  .infoContainer {
+    @media screen and (min-width: 768px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media screen and (min-width: 1226px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
   }
 }
 .addressSection {
@@ -222,7 +238,7 @@
 }
 
 .addNewAddress {
-  color: #715a41;
+  color: #bca27b;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -232,6 +248,7 @@
 .addressCard {
   background-color: #ede5df;
   padding: 16px;
+  width: 100%;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -247,22 +264,21 @@
     color: #333;
   }
   .editAddressBtn {
-  background-color: #715a41 !important;
-  color: #fff !important;
-  border: none;
-  width: 100px;
-  height: 48px;
-  border-radius: 12px;
-  padding: 8px;
-  align-self: flex-start;
-  font-size: 13px;
-  margin-top: 8px;
-  margin: auto;
-}
+    background-color: #bca27b !important;
+    color: #fff !important;
+    border: none;
+    width: 100px;
+    height: 48px;
+    border-radius: 12px;
+    padding: 8px;
+    align-self: flex-start;
+    font-size: 13px;
+    margin-top: 8px;
+    margin: auto;
+  }
 }
 
-
-.address{
+.address {
   text-align: left;
   width: 245px;
 }
